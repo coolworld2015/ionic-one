@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', ['ionic', 'starter.controllers']);
+        .module('app', ['ionic']);
 
     angular
         .module('app')
@@ -25,96 +25,16 @@
 
     angular
         .module('app')
-        .config(routeConfig);
-
-    routeConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
-
-    function routeConfig($stateProvider, $urlRouterProvider) {
-        $stateProvider
-            // setup an abstract state for the roots directive
-            .state('root', {
-                url: '/root',
-                abstract: true,
-                templateUrl: 'app/root.html'
-            })
-
-            // Each root has its own nav history stack:
-
-            .state('root.home', {
-                url: '/home',
-                views: {
-                    'root-home': {
-                        templateUrl: 'app/home.html'
-                    }
+        .directive('hideTabs', function ($rootScope) {
+            return {
+                restrict: 'A',
+                link: function ($scope, $el) {
+                    console.log(111);
+                    $rootScope.hideTabs = 'tabs-item-hide';
+                    $scope.$on('$destroy', function () {
+                        $rootScope.hideTabs = '';
+                    });
                 }
-            })
-
-            .state('root.clients', {
-                url: '/clients',
-                views: {
-                    'root-clients': {
-                        templateUrl: 'clients/clients.html',
-                        controller: 'ClientsCtrl',
-                        controllerAs: 'clientsCtrl'
-                    }
-                }
-            })
-
-            .state('root.client-details', {
-                url: '/client-details',
-                params: {item: {}},
-                views: {
-                    'root-clients': {
-                        templateUrl: 'clients/client-details.html',
-                        controller: 'ClientDetailsCtrl',
-                        controllerAs: 'clientDetailsCtrl'
-                    }
-                }
-            })
-
-            .state('root.goods', {
-                url: '/goods',
-                views: {
-                    'root-goods': {
-                        templateUrl: 'goods/goods.html',
-                        controller: 'GoodsCtrl',
-                        controllerAs: 'goodsCtrl'
-                    }
-                }
-            })
-
-            .state('root.good-details', {
-                url: '/good-details',
-                params: {item: {}},
-                views: {
-                    'root-goods': {
-                        templateUrl: 'goods/good-details.html',
-                        controller: 'GoodDetailsCtrl',
-                        controllerAs: 'goodDetailsCtrl'
-                    }
-                }
-            })
-
-            .state('root.config', {
-                url: '/config',
-                views: {
-                    'root-config': {
-                        templateUrl: 'app/config.html'
-                    }
-                }
-            })
-
-            .state('root.login', {
-                url: '/login',
-                views: {
-                    'root-account': {
-                        templateUrl: 'login/login.html'
-                    }
-                }
-            });
-
-        // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/root/home');
-
-    }
+            };
+        });
 })();
