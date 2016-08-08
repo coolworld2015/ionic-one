@@ -31,29 +31,28 @@
 
     function routeConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
-            // setup an abstract state for the tabs directive
-            .state('tab', {
-                url: '/tab',
+            // setup an abstract state for the roots directive
+            .state('root', {
+                url: '/root',
                 abstract: true,
-                templateUrl: 'app/tabs.html'
+                templateUrl: 'app/root.html'
             })
 
-            // Each tab has its own nav history stack:
+            // Each root has its own nav history stack:
 
-            .state('tab.dash', {
-                url: '/dash',
+            .state('root.home', {
+                url: '/home',
                 views: {
-                    'tab-dash': {
-                        templateUrl: 'app/tab-dash.html',
-                        controller: 'DashCtrl'
+                    'root-home': {
+                        templateUrl: 'app/home.html'
                     }
                 }
             })
 
-            .state('tab.clients', {
+            .state('root.clients', {
                 url: '/clients',
                 views: {
-                    'tab-clients': {
+                    'root-clients': {
                         templateUrl: 'clients/clients.html',
                         controller: 'ClientsCtrl',
                         controllerAs: 'clientsCtrl'
@@ -61,11 +60,11 @@
                 }
             })
 
-            .state('tab.client-details', {
+            .state('root.client-details', {
                 url: '/client-details',
                 params: {item: {}},
                 views: {
-                    'tab-clients': {
+                    'root-clients': {
                         templateUrl: 'clients/client-details.html',
                         controller: 'ClientDetailsCtrl',
                         controllerAs: 'clientDetailsCtrl'
@@ -73,10 +72,10 @@
                 }
             })
 
-            .state('tab.goods', {
+            .state('root.goods', {
                 url: '/goods',
                 views: {
-                    'tab-goods': {
+                    'root-goods': {
                         templateUrl: 'goods/goods.html',
                         controller: 'GoodsCtrl',
                         controllerAs: 'goodsCtrl'
@@ -84,11 +83,11 @@
                 }
             })
 
-            .state('tab.good-details', {
+            .state('root.good-details', {
                 url: '/good-details',
                 params: {item: {}},
                 views: {
-                    'tab-goods': {
+                    'root-goods': {
                         templateUrl: 'goods/good-details.html',
                         controller: 'GoodDetailsCtrl',
                         controllerAs: 'goodDetailsCtrl'
@@ -96,27 +95,26 @@
                 }
             })
 
-            .state('tab.account', {
+            .state('root.account', {
                 url: '/account',
                 views: {
-                    'tab-account': {
-                        templateUrl: 'app/tab-account.html',
-                        controller: 'AccountCtrl'
+                    'root-account': {
+                        templateUrl: 'app/root-account.html'
                     }
                 }
             })
 
-            .state('tab.login', {
+            .state('root.login', {
                 url: '/login',
                 views: {
-                    'tab-account': {
+                    'root-account': {
                         templateUrl: 'login/login.html'
                     }
                 }
             });
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/tab/dash');
+        $urlRouterProvider.otherwise('/root/home');
 
     }
 })();

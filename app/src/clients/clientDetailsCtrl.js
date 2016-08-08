@@ -4,10 +4,10 @@
     angular
         .module('app')
         .controller('ClientDetailsCtrl', ClientDetailsCtrl);
-		
-	ClientDetailsCtrl.$inject = ['$stateParams'];
-    
-	function ClientDetailsCtrl($stateParams) {
+
+    ClientDetailsCtrl.$inject = ['$stateParams'];
+
+    function ClientDetailsCtrl($stateParams) {
         var vm = this;
 
         angular.extend(vm, {

@@ -10,13 +10,13 @@
         return {
             getAll: getAll
         };
-		
-		function getAll() {
-			var url = 'http://ui-warehouse.herokuapp.com/api/clients/get';
-			return $http.get(url)
-				.then(function (result) {
-					return result;
-				});
-		}
+
+        function getAll() {
+            var url = 'http://ui-warehouse.herokuapp.com/api/clients/get';
+            return $http.get(url)
+                .then(function (result) {
+                    return result;
+                });
+        }
     }
 })();
