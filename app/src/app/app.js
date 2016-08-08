@@ -22,7 +22,23 @@
             }
         });
     }
+	
+    angular
+        .module('app')
+        .run(runHandler);
 
+    runHandler.$inject = ['$rootScope', '$state'];
+
+    function runHandler($rootScope, $state) {
+        $rootScope.$on('$stateChangeStart1', function (event, toState) { //TODO Change $stateChangeStart
+            var requireLogin = toState.data.requireLogin;
+            if (requireLogin && typeof $rootScope.currentUser === 'undefined') {
+                event.preventDefault();
+                $state.go('login');
+            }
+        });
+    }
+	
     angular
         .module('app')
         .run(init);

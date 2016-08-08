@@ -17,6 +17,9 @@
 
             .state('root.home', {
                 url: '/home',
+				data: {
+                    requireLogin: true
+                },
                 views: {
                     'root-home': {
                         templateUrl: 'app/home.html'
@@ -26,6 +29,9 @@
 
             .state('root.clients', {
                 url: '/clients',
+				data: {
+                    requireLogin: true
+                },				
                 views: {
                     'root-clients': {
                         templateUrl: 'clients/clients.html',
@@ -37,6 +43,9 @@
 
             .state('root.client-details', {
                 url: '/client-details',
+				data: {
+                    requireLogin: true
+                },				
                 params: {item: {}},
                 views: {
                     'root-clients': {
@@ -49,6 +58,9 @@
 
             .state('root.goods', {
                 url: '/goods',
+				data: {
+                    requireLogin: true
+                },				
                 views: {
                     'root-goods': {
                         templateUrl: 'goods/goods.html',
@@ -60,6 +72,9 @@
 
             .state('root.good-details', {
                 url: '/good-details',
+				data: {
+                    requireLogin: true
+                },				
                 params: {item: {}},
                 views: {
                     'root-goods': {
@@ -72,6 +87,9 @@
 
             .state('root.config', {
                 url: '/config',
+				data: {
+                    requireLogin: true
+                },				
                 views: {
                     'root-config': {
                         templateUrl: 'app/config.html'
@@ -81,6 +99,9 @@
 
             .state('login', {
                 url: '/login',
+				data: {
+                    requireLogin: false
+                },				
 				templateUrl: 'login/login.html',
 				controller: 'LoginCtrl',
 				controllerAs: 'loginCtrl'
