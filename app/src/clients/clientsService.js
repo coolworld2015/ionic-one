@@ -4,16 +4,30 @@
         .module('app')
         .factory('ClientsService', ClientsService);
 
-    ClientsService.$inject = ['$http'];
+    ClientsService.$inject = ['$rootScope', '$http'];
 
-    function ClientsService($http) {
+    function ClientsService($rootScope, $http) {
+        var webUrl = $rootScope.myConfig.webUrl;
+
         return {
-            getAll: getAll
+            getClients: getClients,
+            deleteItem: deleteItem
         };
 
-        function getAll() {
-            var url = 'http://ui-warehouse.herokuapp.com/api/clients/get';
+        function getClients() {
+            var url = webUrl + 'api/clients/get';
             return $http.get(url)
+                .then(function (result) {
+                    return result;
+                });
+        }
+
+        function deleteItem(id) {
+            var url = webUrl + 'api/clients/delete';
+            var item = {
+                "id": id
+            };
+            return $http.post(url, item)
                 .then(function (result) {
                     return result;
                 });
