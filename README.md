@@ -1,5 +1,5 @@
 # Ionic one
-git clone https://github.com/coolworld2015/ionic_one.git
+git clone https://github.com/coolworld2015/ionic-one.git
 -------------------------------------------------------------------------------------------------
 npm install -g cordova ionic
 -------------------------------------------------------------------------------------------------
