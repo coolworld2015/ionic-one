@@ -95,11 +95,11 @@
                 }
             })
 
-            .state('root.account', {
-                url: '/account',
+            .state('root.config', {
+                url: '/config',
                 views: {
-                    'root-account': {
-                        templateUrl: 'app/root-account.html'
+                    'root-config': {
+                        templateUrl: 'app/config.html'
                     }
                 }
             })

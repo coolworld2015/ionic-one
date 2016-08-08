@@ -1,14 +1,20 @@
 <ion-view view-title="{{clientDetailsCtrl.name}}">
+    <!--
+        <ion-nav-buttons side="primary">
+            <button class="button button-icon ion-edit"
+                    ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+            </button>
+        </ion-nav-buttons>
 
+        <ion-nav-buttons side="secondary">
+            <button class="button button-icon ion-close-circled"
+                    ng-click="data.showReorder = !data.showReorder; data.showDelete = false;">
+            </button>
+        </ion-nav-buttons>
+    -->
     <ion-nav-buttons side="primary">
-        <button class="button button-icon ion-edit"
+        <button class="button button-icon ion-navicon"
                 ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
-        </button>
-    </ion-nav-buttons>
-
-    <ion-nav-buttons side="secondary">
-        <button class="button button-icon ion-close-circled"
-                ng-click="data.showReorder = !data.showReorder; data.showDelete = false;">
         </button>
     </ion-nav-buttons>
 

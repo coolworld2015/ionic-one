@@ -1,11 +1,15 @@
 <ion-view view-title="Clients ({{clientsCtrl.clients.length}})" ng-click="clientsCtrl.queryClear()">
     <ion-nav-buttons side="primary">
-        <button class="button button-icon ion-plus-circled"
+        <button class="button button-icon ion-navicon"
                 ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
         </button>
     </ion-nav-buttons>
     <!--
       <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-plus-circled"
+                ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+        </button>
+
           <button class="button button-icon ion-navicon"
               ng-click="data.showDelete = !data.showDelete; data.showReorder = false;"
               ng-click="data.showReorder = !data.showReorder; data.showDelete = false;">
@@ -29,8 +33,14 @@
             <ion-item collection-repeat="client in clientsCtrl.clients | filter: clientsCtrl.query"
                       type="item-text-wrap" ng-click="clientsCtrl.clientDetails(client)">
                 <h2>{{client.name}}</h2>
+
+                <ion-option-button class="button-assertive" ng-click="remove(chat)">
+                    Delete
+                </ion-option-button>
+                <!--
                 <ion-option-button ng-click="remove(client)"><i class="ion-edit"></i></ion-option-button>
                 <ion-option-button ng-click="remove(client)"><i class="ion-close-circled"></i></ion-option-button>
+                -->
             </ion-item>
         </ion-list>
 
