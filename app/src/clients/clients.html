@@ -1,46 +1,48 @@
 <ion-view view-title="Clients ({{clientsCtrl.clients.length}})" ng-click="clientsCtrl.queryClear()">
-    <ion-nav-buttons side="primary">
-        <button class="button button-icon ion-navicon"
-                ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
-        </button>
-    </ion-nav-buttons>
     <!--
-      <ion-nav-buttons side="secondary">
-        <button class="button button-icon ion-plus-circled"
-                ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
-        </button>
+        <ion-nav-buttons side="secondary">
+            <button class="button button-icon ion-plus-circled"
+                    ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+            </button>
 
-          <button class="button button-icon ion-navicon"
-              ng-click="data.showDelete = !data.showDelete; data.showReorder = false;"
-              ng-click="data.showReorder = !data.showReorder; data.showDelete = false;">
-          </button>
-      </ion-nav-buttons>
+            <button class="button button-icon ion-navicon"
+                    ng-click="data.showDelete = !data.showDelete; data.showReorder = false;"
+                    ng-click="data.showReorder = !data.showReorder; data.showDelete = false;">
+            </button>
+        </ion-nav-buttons>
     -->
-    <div class="bar bar-subheader item-input-inset bar-light">
-        <label class="item-input-wrapper">
-            <i class="icon ion-search placeholder-icon"></i>
-            <input type="search" ng-model="clientsCtrl.query.name" ng-change="clientsCtrl.queryChanged()"
-                   placeholder="Search">
-            <i class="ion-close-round" ng-show="clientsCtrl.clear"></i>
-        </label>
-    </div>
 
-    <ion-content class="has-subheader">
+        <ion-nav-buttons side="secondary">
+            <button class="button button-icon ion-navicon"
+                    ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+            </button>
+        </ion-nav-buttons>
 
-        <ion-refresher on-refresh="clientsCtrl.doRefresh()"></ion-refresher>
+        <div class="bar bar-subheader item-input-inset bar-light">
+            <label class="item-input-wrapper">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" ng-model="clientsCtrl.query.name" ng-change="clientsCtrl.queryChanged()"
+                       placeholder="Search">
+                <i class="ion-close-round" ng-show="clientsCtrl.clear"></i>
+            </label>
+        </div>
 
-        <ion-list>
-            <ion-item collection-repeat="client in clientsCtrl.clients | filter: clientsCtrl.query"
-                      type="item-text-wrap" ng-click="clientsCtrl.clientDetails(client)">
-                <h2>{{client.name}}</h2>
+        <ion-content class="has-subheader">
 
-                <ion-option-button class="button-assertive" ng-click="remove(chat)">
-                    Delete
-                </ion-option-button>
-                <!--
-                <ion-option-button ng-click="remove(client)"><i class="ion-edit"></i></ion-option-button>
-                <ion-option-button ng-click="remove(client)"><i class="ion-close-circled"></i></ion-option-button>
-                -->
+            <ion-refresher on-refresh="clientsCtrl.doRefresh()"></ion-refresher>
+
+            <ion-list>
+                <ion-item collection-repeat="client in clientsCtrl.clients | filter: clientsCtrl.query"
+                          type="item-text-wrap" ng-click="clientsCtrl.clientDetails(client)">
+                    <h2>{{client.name}}</h2>
+
+                    <ion-option-button class="button-assertive" ng-click="remove(chat)">
+                        Delete
+                    </ion-option-button>
+                    <!--
+                    <ion-option-button ng-click="remove(client)"><i class="ion-edit"></i></ion-option-button>
+                    <ion-option-button ng-click="remove(client)"><i class="ion-close-circled"></i></ion-option-button>
+                    -->
             </ion-item>
         </ion-list>
 
