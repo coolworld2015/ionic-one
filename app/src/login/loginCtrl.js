@@ -5,9 +5,11 @@
         .module('app')
         .controller('LoginCtrl', LoginCtrl);
 
-    LoginCtrl.$inject = ['$rootScope', '$state', 'UsersService', 'UsersLocalStorage', 'AuditService'];
+    LoginCtrl.$inject = ['$ionicLoading', '$rootScope', '$state', 'UsersService', 'UsersLocalStorage', 'AuditService'];
+    //LoginCtrl.$inject = ['$rootScope', '$state'];
 
-    function LoginCtrl($rootScope, $state, UsersService, UsersLocalStorage, AuditService) {
+    function LoginCtrl($ionicLoading, $rootScope, $state, UsersService, UsersLocalStorage, AuditService) {
+    //function LoginCtrl($rootScope, $state) {
         var vm = this;
 
         angular.extend(vm, {
@@ -49,7 +51,9 @@
         }
 
         function getUsersOn(name, pass) {
-            vm.error = false;
+            $ionicLoading.show({
+                template: '<ion-spinner></ion-spinner>'
+            });
             UsersService.findByName(name)
                 .then(function (data) {
                     $rootScope.loading = false;
@@ -71,13 +75,14 @@
 
                         AuditService.addItem(item)
                             .then(function () {
-                                $state.go('main');
+                                $state.go('root.home');
                             })
                             .catch(errorHandler);
 
                     } else {
                         vm.error = true;
                     }
+                    $ionicLoading.hide();
                 })
                 .catch(errorHandler);
         }
@@ -90,7 +95,7 @@
                             name: name,
                             pass: pass
                         };
-                        $state.go('main');
+                        $state.go('root.home');
                     } else {
                         vm.error = true;
                     }
@@ -101,6 +106,7 @@
         function errorHandler() {
             $rootScope.loading = false;
             $rootScope.myError = true;
+            $ionicLoading.hide();
         }
     }
 })();

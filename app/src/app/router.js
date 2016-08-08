@@ -83,7 +83,9 @@
                 url: '/login',
                 views: {
                     'root-account': {
-                        templateUrl: 'login/login.html'
+                        templateUrl: 'login/login.html',
+                        controller: 'LoginCtrl',
+                        controllerAs: 'loginCtrl'
                     }
                 }
             });

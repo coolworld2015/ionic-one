@@ -40,7 +40,6 @@
                 .then(function (result) {
                     vm.clients = result.data;
                     vm.clients.sort(sort);
-                    $scope.$broadcast('scroll.refreshComplete');
                     $ionicLoading.hide();
                 });
         }

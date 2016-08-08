@@ -6,17 +6,31 @@
         </div>
         <h1 class="title">Submit</h1>
 
-        <div class="list">
-            <label class="item item-input">
-                <input type="text" placeholder="Username" ng-model="data.username">
-            </label>
-            <label class="item item-input">
-                <input type="password" placeholder="Password" ng-model="data.password">
-            </label>
-        </div>
-        <button class="button button-block button-positive" style="background-color: #417D9A !important;"
-                ng-click="login()">Submit
-        </button>
+        <form ng-submit="loginCtrl.toLogin()" novalidate name="loginCtrl.form" autocomplete="off">
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text" placeholder="Username" ng-model="loginCtrl.name" name="name" required>
+                </label>
+
+                <div ng-if="loginCtrl.form.$submitted">
+                    <div ng-show="loginCtrl.form.name.$error.required" class="valid">Value required</div>
+                </div>
+
+                <label class="item item-input">
+                    <input type="password" placeholder="Password" ng-model="loginCtrl.pass" name="pass" required>
+                </label>
+
+                <div ng-if="loginCtrl.form.$submitted">
+                    <div ng-show="loginCtrl.form.pass.$error.required" class="valid">Value required</div>
+                </div>
+            </div>
+            <div ng-show="loginCtrl.error" class="valid fix">
+                Error. Wrong name or password
+            </div>
+            <button class="button button-block button-positive" style="background-color: #417D9A !important;"
+                    ng-click="loginCtrl.toLogin()">Submit
+            </button>
+        </form>
 
     </ion-content>
 </ion-view>
