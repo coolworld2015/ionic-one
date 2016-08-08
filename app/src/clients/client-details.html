@@ -1,0 +1,44 @@
+<ion-view view-title="{{clientDetailsCtrl.name}}">
+	
+	<ion-nav-buttons side="primary">
+		<button class="button button-icon ion-edit"
+			ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+		</button>
+	</ion-nav-buttons>
+	
+	<ion-nav-buttons side="secondary">
+		<button class="button button-icon ion-close-circled"
+		  ng-click="data.showReorder = !data.showReorder; data.showDelete = false;">
+		</button>
+	</ion-nav-buttons>
+	
+    <ion-content class="padding">
+        <p>
+            <strong>{{clientDetailsCtrl.id}}</strong>
+        </p>
+
+        <p>
+            <strong>{{clientDetailsCtrl.name}}</strong>
+        </p>
+
+        <p>
+            <strong>{{clientDetailsCtrl.address}}</strong>
+        </p>
+
+        <p>
+            <strong>{{clientDetailsCtrl.cv}}</strong>
+        </p>
+
+        <p>
+            <strong>{{clientDetailsCtrl.description}}</strong>
+        </p>
+
+        <p>
+            <strong>{{clientDetailsCtrl.phone}}</strong>
+        </p>
+
+        <p>
+            <strong>{{clientDetailsCtrl.sum | number:2}}</strong>
+        </p>
+    </ion-content>
+</ion-view>
