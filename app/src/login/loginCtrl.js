@@ -6,21 +6,20 @@
         .controller('LoginCtrl', LoginCtrl);
 
     LoginCtrl.$inject = ['$ionicLoading', '$rootScope', '$state', 'UsersService', 'UsersLocalStorage', 'AuditService'];
-    //LoginCtrl.$inject = ['$rootScope', '$state'];
 
     function LoginCtrl($ionicLoading, $rootScope, $state, UsersService, UsersLocalStorage, AuditService) {
-    //function LoginCtrl($rootScope, $state) {
         var vm = this;
 
         angular.extend(vm, {
             init: init,
+			change: change,
             toLogin: toLogin,
             checkUser: checkUser,
             _check: check,
             _errorHandler: errorHandler
         });
 
-        init();
+        //init();
 
         function init() {
             $rootScope.currentUser = undefined;
@@ -29,7 +28,11 @@
             $rootScope.message = false;
         }
 
-        function toLogin() {
+        function change() {
+            vm.error = false;
+        }        
+		
+		function toLogin() {
             if (vm.form.$invalid) {
                 return;
             }
@@ -75,6 +78,7 @@
 
                         AuditService.addItem(item)
                             .then(function () {
+								vm.error = false;
                                 $state.go('root.home');
                             })
                             .catch(errorHandler);
@@ -82,6 +86,7 @@
                     } else {
                         vm.error = true;
                     }
+ 
                     $ionicLoading.hide();
                 })
                 .catch(errorHandler);

@@ -79,18 +79,14 @@
                 }
             })
 
-            .state('root.login', {
+            .state('login', {
                 url: '/login',
-                views: {
-                    'root-account': {
-                        templateUrl: 'login/login.html',
-                        controller: 'LoginCtrl',
-                        controllerAs: 'loginCtrl'
-                    }
-                }
-            });
+				templateUrl: 'login/login.html',
+				controller: 'LoginCtrl',
+				controllerAs: 'loginCtrl'
+             });
 
-        $urlRouterProvider.otherwise('/root/login');
+        $urlRouterProvider.otherwise('login');
     }
 
 })();

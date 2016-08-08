@@ -76,7 +76,14 @@ body {
     left: 3px;
     margin-bottom: 10px;
 }
+
 .fix {
     top: -5px;
     margin: 10px;
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+	border-radius: 20%;
 }
