@@ -83,7 +83,7 @@
                     }
                 }
             })
-			
+
             .state('tab.good-details', {
                 url: '/good-details',
                 params: {item: {}},
@@ -95,13 +95,22 @@
                     }
                 }
             })
-			
+
             .state('tab.account', {
                 url: '/account',
                 views: {
                     'tab-account': {
                         templateUrl: 'app/tab-account.html',
                         controller: 'AccountCtrl'
+                    }
+                }
+            })
+
+            .state('tab.login', {
+                url: '/login',
+                views: {
+                    'tab-account': {
+                        templateUrl: 'login/login.html'
                     }
                 }
             });
