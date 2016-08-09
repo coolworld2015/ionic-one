@@ -36,7 +36,7 @@
                           type="item-text-wrap" ng-click="clientsCtrl.clientDetails(client)">
                     <h2><strong>{{client.name}}</strong></h2>
 
-                    <ion-option-button class="button-assertive" ng-click="clientsCtrl.clientDelete(client.id)">
+                    <ion-option-button class="button-assertive" ng-click="clientsCtrl.showConfirm(client)">
                         Delete
                     </ion-option-button>
                     <!--

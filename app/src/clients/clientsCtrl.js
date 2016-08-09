@@ -5,19 +5,19 @@
         .module('app')
         .controller('ClientsCtrl', ClientsCtrl);
 
-    ClientsCtrl.$inject = ['$scope', '$rootScope', '$state', 'ClientsService', '$ionicLoading'];
+    ClientsCtrl.$inject = ['$scope', '$rootScope', '$state', 'ClientsService', '$ionicLoading', '$ionicPopup'];
 
-    function ClientsCtrl($scope, $rootScope, $state, ClientsService, $ionicLoading) {
+    function ClientsCtrl($scope, $rootScope, $state, ClientsService, $ionicLoading, $ionicPopup) {
         var vm = this;
 
         angular.extend(vm, {
             init: init,
+            showConfirm: showConfirm,
             clientDelete: clientDelete,
             doRefresh: doRefresh,
             queryClear: queryClear,
             queryChanged: queryChanged,
-            clientDetails: clientDetails,
-            _sort: sort
+            clientDetails: clientDetails
         });
 
         init();
@@ -35,11 +35,27 @@
                 });
         }
 
+        function showConfirm(client) {
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Deleting',
+                template: 'Are you sure you want to delete ' + client.name + ' ?'
+            });
+
+            confirmPopup.then(function (res) {
+                if (res) {
+                    clientDelete(client.id);
+                    console.log('You are sure');
+                } else {
+                    console.log('You are not sure');
+                }
+            });
+        }
+
         function clientDelete(id) {
             $ionicLoading.show({
                 template: '<ion-spinner></ion-spinner>'
             });
-
+            console.log(id);
             ClientsService.deleteItem(id)
                 .then(function () {
                     init();
@@ -80,17 +96,5 @@
             $rootScope.myError = true;
             $ionicLoading.hide();
         }
-
-        function sort(a, b) {
-            var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
-            if (nameA < nameB) {
-                return -1
-            }
-            if (nameA > nameB) {
-                return 1
-            }
-            return 0;
-        }
     }
-
 })();

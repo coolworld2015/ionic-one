@@ -16,7 +16,7 @@
             doRefresh: doRefresh,
             queryClear: queryClear,
             queryChanged: queryChanged,
-            clientDetails: clientDetails,
+            clientDetails: clientDetails
         });
 
         init();
