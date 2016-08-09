@@ -3,17 +3,17 @@
 
     angular
         .module('app')
-        .controller('LoginCtrl', LoginCtrl);
+        .controller('PhonesSearchCtrl', PhonesSearchCtrl);
 
-    LoginCtrl.$inject = ['$ionicLoading', '$rootScope', '$state', 'UsersService', 'UsersLocalStorage', 'AuditService'];
+    PhonesSearchCtrl.$inject = ['$ionicLoading', '$rootScope', '$state', 'UsersService', 'UsersLocalStorage', 'AuditService'];
 
-    function LoginCtrl($ionicLoading, $rootScope, $state, UsersService, UsersLocalStorage, AuditService) {
+    function PhonesSearchCtrl($ionicLoading, $rootScope, $state, UsersService, UsersLocalStorage, AuditService) {
         var vm = this;
 
         angular.extend(vm, {
             init: init,
-			change: change,
-            toLogin: toLogin,
+            change: change,
+            doSearch: doSearch,
             checkUser: checkUser,
             _check: check,
             _errorHandler: errorHandler
@@ -30,13 +30,20 @@
 
         function change() {
             vm.error = false;
-        }        
-		
-		function toLogin() {
+            vm.minLengthError = false;
+        }
+
+        function doSearch() {
             if (vm.form.$invalid) {
                 return;
             }
-            checkUser(vm.name, vm.pass);
+
+            if (vm.name.length < 3) {
+                vm.minLengthError = true;
+                return;
+            }
+
+            $state.go('root.phones-results', {name: vm.name, search: vm.search, finds: true});
         }
 
         function checkUser(name, pass) {
@@ -69,7 +76,7 @@
                         };
 
                         var id = (Math.random() * 1000000).toFixed();
-                        var description  = navigator.userAgent;
+                        var description = navigator.userAgent;
                         var item = {
                             id: id,
                             name: vm.name,
@@ -78,7 +85,7 @@
 
                         AuditService.addItem(item)
                             .then(function () {
-								vm.error = false;
+                                vm.error = false;
                                 $state.go('root.home');
                             })
                             .catch(errorHandler);
@@ -86,7 +93,7 @@
                     } else {
                         vm.error = true;
                     }
- 
+
                     $ionicLoading.hide();
                 })
                 .catch(errorHandler);
@@ -115,3 +122,4 @@
         }
     }
 })();
+

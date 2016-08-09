@@ -1,7 +1,7 @@
 <ion-view view-title="Phones ({{phonesCtrl.phones.length}})" ng-click="phonesCtrl.queryClear()">
     <ion-nav-buttons side="secondary">
         <button class="button button-icon ion-navicon"
-                ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+                ng-click="phonesCtrl.phonesSearch()">
         </button>
     </ion-nav-buttons>
 
@@ -23,6 +23,7 @@
                       type="item-text-wrap" ng-click="phonesCtrl.phoneDetails(phone)">
                 <h2><strong>{{phone.name}} - {{phone.phone}}</strong></h2>
 
+                <!--
                 <ion-option-button class="button-assertive" ng-click="phonesCtrl.phoneDelete(phone.id)">
                     Delete
                 </ion-option-button>

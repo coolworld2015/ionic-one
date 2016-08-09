@@ -1,0 +1,30 @@
+<ion-view view-title="Search phones">
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-navicon"
+                ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content class="padding">
+        <button class="button button-block button-positive" style="background-color: #417D9A !important;">
+            <strong>Search phones</strong>
+        </button>
+
+        <form ng-submit="phonesSearchCtrl.doSearch()" novalidate name="phonesSearchCtrl.form" autocomplete="off">
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text" placeholder="Search" ng-model="phonesSearchCtrl.name" name="name" ng-change="phonesSearchCtrl.change()" required>
+                </label>
+
+                <div ng-if="phonesSearchCtrl.form.$submitted">
+                    <div ng-show="phonesSearchCtrl.form.name.$error.required" class="valid">Value required</div>
+                </div>
+                <div ng-show="phonesSearchCtrl.minLengthError" class="valid">Min 3 symbols</div>
+            </div>
+
+            <button type="submit" class="button button-block button-positive" style="background-color: #417D9A !important;">
+                <strong>Submit</strong>
+            </button>
+        </form>
+    </ion-content>
+</ion-view>

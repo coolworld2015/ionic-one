@@ -126,6 +126,20 @@
                 }
             })
 
+            .state('root.phones-search', {
+                url: '/phones-search',
+                data: {
+                    requireLogin: true
+                },
+                views: {
+                    'root-phones': {
+                        templateUrl: 'phones/phones-search.html',
+                        controller: 'PhonesSearchCtrl',
+                        controllerAs: 'phonesSearchCtrl'
+                    }
+                }
+            })
+
             .state('login', {
                 url: '/login',
 				data: {

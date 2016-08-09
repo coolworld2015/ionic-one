@@ -16,7 +16,8 @@
             doRefresh: doRefresh,
             queryClear: queryClear,
             queryChanged: queryChanged,
-            phoneDetails: phoneDetails
+            phoneDetails: phoneDetails,
+            phonesSearch: phonesSearch
         });
 
         init();
@@ -38,21 +39,11 @@
             $ionicLoading.show({
                 template: '<ion-spinner></ion-spinner>'
             });
-
-            if ($rootScope.mode == 'ON-LINE (Heroku)') {
-                console.log(111);
-                ClientsService.deleteItem(id)
-                    .then(function () {
-                        init();
-                    })
-                    .catch(errorHandler);
-            } else {
-//                UsersLocalStorage.deleteItem(vm.id);
-//                $rootScope.loading = true;
-//                $timeout(function () {
-//                    $state.go('users');
-//                }, 100);
-            }
+            PhonesService.deleteItem(id)
+                .then(function () {
+                    init();
+                })
+                .catch(errorHandler);
             $ionicLoading.hide();
         }
 
@@ -79,6 +70,11 @@
 
         function phoneDetails(item) {
             $state.go('root.phone-details', {item: item});
+        }
+
+
+        function phonesSearch(item) {
+            $state.go('root.phones-search');
         }
 
         function errorHandler() {
