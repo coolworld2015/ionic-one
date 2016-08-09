@@ -22,15 +22,6 @@
 
         init();
 
-        function init1() {
-            vm.clear = false;
-            vm.clients = [
-                {name: 'test1'},
-                {name: 'test2'},
-                {name: 'test3'}
-            ];
-        }
-
         function init() {
             vm.clients = [];
             $ionicLoading.show({
@@ -40,7 +31,6 @@
             ClientsService.getClients()
                 .then(function (result) {
                     vm.clients = result.data;
-                    vm.clients.sort(sort);
                     $ionicLoading.hide();
                 });
         }
@@ -50,20 +40,12 @@
                 template: '<ion-spinner></ion-spinner>'
             });
 
-            if ($rootScope.mode == 'ON-LINE (Heroku)') {
-                console.log(111);
-                ClientsService.deleteItem(id)
-                    .then(function () {
-                        init();
-                    })
-                    .catch(errorHandler);
-            } else {
-//                UsersLocalStorage.deleteItem(vm.id);
-//                $rootScope.loading = true;
-//                $timeout(function () {
-//                    $state.go('users');
-//                }, 100);
-            }
+            ClientsService.deleteItem(id)
+                .then(function () {
+                    init();
+                })
+                .catch(errorHandler);
+
             $ionicLoading.hide();
         }
 

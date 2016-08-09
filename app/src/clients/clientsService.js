@@ -11,13 +11,15 @@
 
         return {
             getClients: getClients,
-            deleteItem: deleteItem
+            deleteItem: deleteItem,
+            _sort: sort
         };
 
         function getClients() {
             var url = webUrl + 'api/clients/get';
             return $http.get(url)
                 .then(function (result) {
+                    result.data.sort(sort);
                     return result;
                 });
         }
@@ -31,6 +33,17 @@
                 .then(function (result) {
                     return result;
                 });
+        }
+
+        function sort(a, b) {
+            var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
+            if (nameA < nameB) {
+                return -1
+            }
+            if (nameA > nameB) {
+                return 1
+            }
+            return 0;
         }
     }
 })();
