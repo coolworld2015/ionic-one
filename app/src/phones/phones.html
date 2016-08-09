@@ -22,15 +22,6 @@
             <ion-item collection-repeat="phone in phonesCtrl.phones | filter: phonesCtrl.query"
                       type="item-text-wrap" ng-click="phonesCtrl.phoneDetails(phone)">
                 <h2><strong>{{phone.name}} - {{phone.phone}}</strong></h2>
-
-                <!--
-                <ion-option-button class="button-assertive" ng-click="phonesCtrl.phoneDelete(phone.id)">
-                    Delete
-                </ion-option-button>
-                <!--
-                <ion-option-button ng-click="remove(client)"><i class="ion-edit"></i></ion-option-button>
-                <ion-option-button ng-click="remove(client)"><i class="ion-close-circled"></i></ion-option-button>
-                -->
             </ion-item>
         </ion-list>
 

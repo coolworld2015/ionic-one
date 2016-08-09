@@ -73,7 +73,7 @@
         }
 
 
-        function phonesSearch(item) {
+        function phonesSearch() {
             $state.go('root.phones-search');
         }
 

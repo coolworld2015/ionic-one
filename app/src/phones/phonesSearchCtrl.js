@@ -5,27 +5,20 @@
         .module('app')
         .controller('PhonesSearchCtrl', PhonesSearchCtrl);
 
-    PhonesSearchCtrl.$inject = ['$ionicLoading', '$rootScope', '$state', 'UsersService', 'UsersLocalStorage', 'AuditService'];
+    PhonesSearchCtrl.$inject = ['$state', '$ionicLoading'];
 
-    function PhonesSearchCtrl($ionicLoading, $rootScope, $state, UsersService, UsersLocalStorage, AuditService) {
+    function PhonesSearchCtrl($state, $ionicLoading) {
         var vm = this;
 
         angular.extend(vm, {
             init: init,
             change: change,
-            doSearch: doSearch,
-            checkUser: checkUser,
-            _check: check,
-            _errorHandler: errorHandler
+            doSearch: doSearch
         });
 
         init();
 
         function init() {
-            $rootScope.currentUser = undefined;
-            $rootScope.loading = false;
-            $rootScope.error = false;
-            $rootScope.message = false;
         }
 
         function change() {
@@ -43,83 +36,10 @@
                 return;
             }
 
-            $state.go('root.phones-results', {name: vm.name, search: vm.search, finds: true});
-        }
-
-        function checkUser(name, pass) {
-            $rootScope.myError = false;
-            $rootScope.loading = true;
-
-            if ($rootScope.mode == 'ON-LINE (Heroku)') {
-                getUsersOn(name, pass);
-            } else {
-                vm.users = UsersLocalStorage.getUsers();
-                check(vm.users, name, pass);
-                $rootScope.myError = false;
-                $rootScope.loading = false;
-            }
-        }
-
-        function getUsersOn(name, pass) {
             $ionicLoading.show({
                 template: '<ion-spinner></ion-spinner>'
             });
-            UsersService.findByName(name)
-                .then(function (data) {
-                    $rootScope.loading = false;
-                    var user = data.data;
-
-                    if (user && (user.name == name && user.pass == pass)) {
-                        $rootScope.currentUser = {
-                            name: name,
-                            pass: pass
-                        };
-
-                        var id = (Math.random() * 1000000).toFixed();
-                        var description = navigator.userAgent;
-                        var item = {
-                            id: id,
-                            name: vm.name,
-                            description: description
-                        };
-
-                        AuditService.addItem(item)
-                            .then(function () {
-                                vm.error = false;
-                                $state.go('root.home');
-                            })
-                            .catch(errorHandler);
-
-                    } else {
-                        vm.error = true;
-                    }
-
-                    $ionicLoading.hide();
-                })
-                .catch(errorHandler);
-        }
-
-        function check(users, name, pass) {
-            if (users) {
-                for (var i = 0; i < users.length; i++) {
-                    if (users[i].name == name && users[i].pass == pass) {
-                        $rootScope.currentUser = {
-                            name: name,
-                            pass: pass
-                        };
-                        $state.go('root.home');
-                    } else {
-                        vm.error = true;
-                    }
-                }
-            }
-        }
-
-        function errorHandler() {
-            $rootScope.loading = false;
-            $rootScope.myError = true;
-            $ionicLoading.hide();
+            $state.go('root.phones-search-results', {name: vm.name, search: vm.search, finds: true});
         }
     }
 })();
-

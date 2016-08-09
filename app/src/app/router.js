@@ -17,7 +17,7 @@
 
             .state('root.home', {
                 url: '/home',
-				data: {
+                data: {
                     requireLogin: true
                 },
                 views: {
@@ -29,9 +29,9 @@
 
             .state('root.clients', {
                 url: '/clients',
-				data: {
+                data: {
                     requireLogin: true
-                },				
+                },
                 views: {
                     'root-clients': {
                         templateUrl: 'clients/clients.html',
@@ -43,9 +43,9 @@
 
             .state('root.client-details', {
                 url: '/client-details',
-				data: {
+                data: {
                     requireLogin: true
-                },				
+                },
                 params: {item: {}},
                 views: {
                     'root-clients': {
@@ -58,9 +58,9 @@
 
             .state('root.goods', {
                 url: '/goods',
-				data: {
+                data: {
                     requireLogin: true
-                },				
+                },
                 views: {
                     'root-goods': {
                         templateUrl: 'goods/goods.html',
@@ -72,9 +72,9 @@
 
             .state('root.good-details', {
                 url: '/good-details',
-				data: {
+                data: {
                     requireLogin: true
-                },				
+                },
                 params: {item: {}},
                 views: {
                     'root-goods': {
@@ -87,9 +87,9 @@
 
             .state('root.config', {
                 url: '/config',
-				data: {
+                data: {
                     requireLogin: true
-                },				
+                },
                 views: {
                     'root-config': {
                         templateUrl: 'app/config.html'
@@ -140,17 +140,60 @@
                 }
             })
 
+            .state('root.phones-search-results', {
+                url: '/phones-search-results?name?search?finds',
+                data: {
+                    requireLogin: true
+                },
+                views: {
+                    'root-phones': {
+                        templateUrl: 'phones/phones-search-results.html',
+                        controller: 'PhonesSearchResultsCtrl',
+                        controllerAs: 'phonesSearchResultsCtrl'
+                    }
+                },
+                resolve: {
+                    items: ['$http', '$stateParams', '$rootScope', '$ionicLoading',
+                        function ($http, $stateParams, $rootScope, $ionicLoading) {
+                            var api;
+                            var name = $stateParams.name;
+                            var type = $stateParams.search;
+
+                            if (type == 'Search by Name') {
+                                api = 'api/items/findByName/';
+                            } else {
+                                api = 'api/items/findByPhone/';
+                            }
+
+                            //var webUrl = $rootScope.myConfig.webUrl + api;
+                            var webUrl = 'http://ui-base.herokuapp.com/' + api;
+                            return $http.get(webUrl + name)
+                                .then(function (data) {
+                                    $ionicLoading.hide();
+                                    return data.data;
+                                })
+                                .catch(function () {
+                                    $rootScope.loading = false;
+                                    $rootScope.error = true;
+                                    return [];
+                                });
+                        }
+                    ]
+                }
+            })
+
             .state('login', {
                 url: '/login',
-				data: {
+                data: {
                     requireLogin: false
-                },				
-				templateUrl: 'login/login.html',
-				controller: 'LoginCtrl',
-				controllerAs: 'loginCtrl'
-             });
+                },
+                templateUrl: 'login/login.html',
+                controller: 'LoginCtrl',
+                controllerAs: 'loginCtrl'
+            });
 
         $urlRouterProvider.otherwise('login');
     }
 
-})();
+})
+();
