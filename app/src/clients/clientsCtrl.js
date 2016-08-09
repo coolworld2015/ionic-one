@@ -5,13 +5,16 @@
         .module('app')
         .controller('ClientsCtrl', ClientsCtrl);
 
-    ClientsCtrl.$inject = ['$scope', '$rootScope', '$state', 'ClientsService', '$ionicLoading', '$ionicPopup'];
+    ClientsCtrl.$inject = ['$scope', '$rootScope', '$state', 'ClientsService',
+        '$ionicLoading', '$ionicPopup', '$ionicListDelegate'];
 
-    function ClientsCtrl($scope, $rootScope, $state, ClientsService, $ionicLoading, $ionicPopup) {
+    function ClientsCtrl($scope, $rootScope, $state, ClientsService,
+                         $ionicLoading, $ionicPopup, $ionicListDelegate) {
         var vm = this;
 
         angular.extend(vm, {
             init: init,
+            addConfirm: addConfirm,
             showConfirm: showConfirm,
             clientDelete: clientDelete,
             doRefresh: doRefresh,
@@ -35,10 +38,26 @@
                 });
         }
 
+        function addConfirm(client) {
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Add',
+                template: 'Are you sure you want to add new client?'
+            });
+
+            confirmPopup.then(function (res) {
+                if (res) {
+
+                    console.log('You are sure');
+                } else {
+                    console.log('You are not sure');
+                }
+            });
+        }
+
         function showConfirm(client) {
             var confirmPopup = $ionicPopup.confirm({
-                title: 'Deleting',
-                template: 'Are you sure you want to delete ' + client.name + ' ?'
+                title: 'Delete',
+                template: 'Are you sure you want to delete ' + client.name + '?'
             });
 
             confirmPopup.then(function (res) {
@@ -46,6 +65,7 @@
                     clientDelete(client.id);
                     console.log('You are sure');
                 } else {
+                    $ionicListDelegate.closeOptionButtons();
                     console.log('You are not sure');
                 }
             });
@@ -71,7 +91,6 @@
             ClientsService.getClients()
                 .then(function (result) {
                     vm.clients = result.data;
-                    vm.clients.sort(sort);
                     $scope.$broadcast('scroll.refreshComplete');
                 });
         }
