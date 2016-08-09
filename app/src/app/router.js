@@ -97,6 +97,20 @@
                 }
             })
 
+            .state('root.phones', {
+                url: '/phones',
+                data: {
+                    requireLogin: true
+                },
+                views: {
+                    'root-phones': {
+                        templateUrl: 'phones/phones.html',
+                        controller: 'PhonesCtrl',
+                        controllerAs: 'phonesCtrl'
+                    }
+                }
+            })
+
             .state('login', {
                 url: '/login',
 				data: {

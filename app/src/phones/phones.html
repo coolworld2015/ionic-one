@@ -1,0 +1,37 @@
+<ion-view view-title="Phones ({{phonesCtrl.phones.length}})" ng-click="phonesCtrl.queryClear()">
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-navicon"
+                ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+        </button>
+    </ion-nav-buttons>
+
+    <div class="bar bar-subheader item-input-inset bar-light">
+        <label class="item-input-wrapper">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search" ng-model="phonesCtrl.query.name" ng-change="phonesCtrl.queryChanged()"
+                   placeholder="Search">
+            <i class="ion-close-round" ng-show="phonesCtrl.clear"></i>
+        </label>
+    </div>
+
+    <ion-content class="has-subheader">
+
+        <ion-refresher on-refresh="phonesCtrl.doRefresh()"></ion-refresher>
+
+        <ion-list>
+            <ion-item collection-repeat="phone in phonesCtrl.phones | filter: phonesCtrl.query"
+                      type="item-text-wrap" ng-click="phonesCtrl.phoneDetails(phone)">
+                <h2><strong>{{phone.name}} - {{phone.phone}}</strong></h2>
+
+                <ion-option-button class="button-assertive" ng-click="phonesCtrl.phoneDelete(phone.id)">
+                    Delete
+                </ion-option-button>
+                <!--
+                <ion-option-button ng-click="remove(client)"><i class="ion-edit"></i></ion-option-button>
+                <ion-option-button ng-click="remove(client)"><i class="ion-close-circled"></i></ion-option-button>
+                -->
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-view>
