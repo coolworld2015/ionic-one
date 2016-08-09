@@ -12,11 +12,11 @@
 
         angular.extend(vm, {
             init: init,
-            clientDelete: clientDelete,
+            phoneDelete: phoneDelete,
             doRefresh: doRefresh,
             queryClear: queryClear,
             queryChanged: queryChanged,
-            clientDetails: clientDetails
+            phoneDetails: phoneDetails
         });
 
         init();
@@ -30,12 +30,11 @@
             PhonesService.getItems()
                 .then(function (result) {
                     vm.phones = result.data;
-                    //vm.clients.sort(sort);
                     $ionicLoading.hide();
                 });
         }
 
-        function clientDelete(id) {
+        function phoneDelete(id) {
             $ionicLoading.show({
                 template: '<ion-spinner></ion-spinner>'
             });
@@ -58,12 +57,11 @@
         }
 
         function doRefresh() {
-            vm.clients = [];
+            vm.phones = [];
             vm.clear = false;
-            ClientsService.getClients()
+            PhonesService.getItems()
                 .then(function (result) {
-                    vm.clients = result.data;
-                    vm.clients.sort(sort);
+                    vm.phones = result.data;
                     $scope.$broadcast('scroll.refreshComplete');
                 });
         }
@@ -79,8 +77,8 @@
             vm.clear = false;
         }
 
-        function clientDetails(item) {
-            $state.go('root.client-details', {item: item});
+        function phoneDetails(item) {
+            $state.go('root.phone-details', {item: item});
         }
 
         function errorHandler() {

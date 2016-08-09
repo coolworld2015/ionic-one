@@ -1,0 +1,37 @@
+<ion-view view-title="{{phoneDetailsCtrl.name}}">
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-navicon"
+                ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content class="padding">
+        <h3>
+            <strong>Name: {{phoneDetailsCtrl.name}}</strong>
+        </h3>
+
+        <h3>
+            <strong>Phone: {{phoneDetailsCtrl.phone}}</strong>
+        </h3>
+
+        <h3>
+            <strong>Str: {{phoneDetailsCtrl.street}}</strong>
+        </h3>
+
+        <h3>
+            <strong>House: {{phoneDetailsCtrl.house}}</strong>
+        </h3>
+
+        <h3>
+            <strong>Apt: {{phoneDetailsCtrl.apt}}</strong>
+        </h3>
+
+        <h3>
+            <strong>Zip: {{phoneDetailsCtrl.index}}</strong>
+        </h3>
+
+        <h3>
+            <strong>Id: {{phoneDetailsCtrl.id}}</strong>
+        </h3>
+    </ion-content>
+</ion-view>

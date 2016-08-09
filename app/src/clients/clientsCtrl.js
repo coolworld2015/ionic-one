@@ -40,13 +40,12 @@
 
         function addConfirm(client) {
             var confirmPopup = $ionicPopup.confirm({
-                title: 'Add',
+                title: 'Add client',
                 template: 'Are you sure you want to add new client?'
             });
 
             confirmPopup.then(function (res) {
                 if (res) {
-
                     console.log('You are sure');
                 } else {
                     console.log('You are not sure');
@@ -56,7 +55,7 @@
 
         function showConfirm(client) {
             var confirmPopup = $ionicPopup.confirm({
-                title: 'Delete',
+                title: 'Delete client',
                 template: 'Are you sure you want to delete ' + client.name + '?'
             });
 

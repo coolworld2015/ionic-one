@@ -111,6 +111,21 @@
                 }
             })
 
+            .state('root.phone-details', {
+                url: '/phone-details',
+                data: {
+                    requireLogin: true
+                },
+                params: {item: {}},
+                views: {
+                    'root-phones': {
+                        templateUrl: 'phones/phone-details.html',
+                        controller: 'PhoneDetailsCtrl',
+                        controllerAs: 'phoneDetailsCtrl'
+                    }
+                }
+            })
+
             .state('login', {
                 url: '/login',
 				data: {
