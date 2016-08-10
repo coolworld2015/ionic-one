@@ -6,32 +6,50 @@
     </ion-nav-buttons>
 
     <ion-content class="padding">
-        <h3>
-            <strong>Name: {{phoneDetailsCtrl.name}}</strong>
-        </h3>
 
-        <h3>
-            <strong>Phone: {{phoneDetailsCtrl.phone}}</strong>
-        </h3>
+        <div class="list">
+            <label class="item item-input">
+                <span class="input-label"><b>Name:</b></span>
+                <input type="text"
+                       ng-model="phoneDetailsCtrl.name">
+            </label>
 
-        <h3>
-            <strong>Str: {{phoneDetailsCtrl.street}}</strong>
-        </h3>
+            <label class="item item-input">
+                <span class="input-label"><b>ID:</b></span>
+                <input type="text"
+                       ng-model="phoneDetailsCtrl.id">
+            </label>
 
-        <h3>
-            <strong>House: {{phoneDetailsCtrl.house}}</strong>
-        </h3>
+            <label class="item item-input">
+                <span class="input-label"><b>Phone:</b></span>
+                <input type="text"
+                       ng-model="phoneDetailsCtrl.phone">
+            </label>
 
-        <h3>
-            <strong>Apt: {{phoneDetailsCtrl.apt}}</strong>
-        </h3>
+            <label class="item item-input">
+                <span class="input-label"><b>Str:</b></span>
+                <input type="text"
+                       ng-model="phoneDetailsCtrl.street">
+            </label>
 
-        <h3>
-            <strong>Zip: {{phoneDetailsCtrl.index}}</strong>
-        </h3>
+            <label class="item item-input">
+                <span class="input-label"><b>House:</b></span>
+                <input type="text"
+                       ng-model="phoneDetailsCtrl.house">
+            </label>
 
-        <h3>
-            <strong>Id: {{phoneDetailsCtrl.id}}</strong>
-        </h3>
+            <label class="item item-input">
+                <span class="input-label"><b>Apt:</b></span>
+                <input type="text"
+                       ng-model="phoneDetailsCtrl.apt">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label"><b>Zip:</b></span>
+                <input type="text"
+                       ng-model="phoneDetailsCtrl.index">
+            </label>
+        </div>
+
     </ion-content>
 </ion-view>

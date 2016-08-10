@@ -1,6 +1,6 @@
 <ion-view view-title="{{clientDetailsCtrl.name}}">
     <ion-nav-buttons side="secondary">
-        <button class="button button-icon ion-navicon"
+        <button class="button button-icon ion-checkmark-circled"
                 ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
         </button>
     </ion-nav-buttons>
@@ -12,6 +12,12 @@
                 <span class="input-label"><b>Name:</b></span>
                 <input type="text"
                        ng-model="clientDetailsCtrl.name">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label"><b>ID:</b></span>
+                <input type="text"
+                       ng-model="clientDetailsCtrl.id">
             </label>
 
             <label class="item item-input">
