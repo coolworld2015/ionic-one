@@ -11,6 +11,7 @@
 
         return {
             getClients: getClients,
+            editItem: editItem,
             deleteItem: deleteItem,
             _sort: sort
         };
@@ -20,6 +21,15 @@
             return $http.get(url)
                 .then(function (result) {
                     result.data.sort(sort);
+                    return result;
+                });
+        }
+
+
+        function editItem(item) {
+            var url = webUrl + 'api/clients/update';
+            return $http.post(url, item)
+                .then(function (result) {
                     return result;
                 });
         }

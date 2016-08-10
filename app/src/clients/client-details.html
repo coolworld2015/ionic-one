@@ -1,7 +1,7 @@
 <ion-view view-title="{{clientDetailsCtrl.name}}">
     <ion-nav-buttons side="secondary">
         <button class="button button-icon ion-checkmark-circled"
-                ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+                ng-click="clientDetailsCtrl.clientsSubmit()">
         </button>
     </ion-nav-buttons>
 
@@ -45,6 +45,12 @@
                 <textarea rows="2"
                           ng-model="clientDetailsCtrl.description">
                 </textarea>
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label"><b>Total:</b></span>
+                <input type="text"
+                       ng-model="clientDetailsCtrl.sum">
             </label>
         </div>
 
