@@ -159,7 +159,7 @@
                             var name = $stateParams.name;
                             var type = $stateParams.search;
 
-                            if (type == 'Search by Name') {
+                            if (type == 'name') {
                                 api = 'api/items/findByName/';
                             } else {
                                 api = 'api/items/findByPhone/';

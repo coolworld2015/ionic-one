@@ -7,13 +7,17 @@
 
     <ion-content class="padding">
         <button class="button button-block button-positive" style="background-color: #417D9A !important;">
-            <strong>Search</strong>
+            <strong>Search by {{phonesSearchCtrl.search}}</strong>
         </button>
+
+        <ion-toggle  ng-model="phonesSearchCtrl.finds" ng-change="phonesSearchCtrl.toggleChanged()">
+            Search by {{phonesSearchCtrl.search}}
+        </ion-toggle>
 
         <form ng-submit="phonesSearchCtrl.doSearch()" novalidate name="phonesSearchCtrl.form" autocomplete="off">
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Search" ng-model="phonesSearchCtrl.name" name="name" ng-change="phonesSearchCtrl.change()" required>
+                    <input type="text" placeholder="Search {{phonesSearchCtrl.search}}" ng-model="phonesSearchCtrl.name" name="name" ng-change="phonesSearchCtrl.change()" required>
                 </label>
 
                 <div ng-if="phonesSearchCtrl.form.$submitted">

@@ -13,17 +13,28 @@
         angular.extend(vm, {
             init: init,
             change: change,
+            toggleChanged: toggleChanged,
             doSearch: doSearch
         });
 
         init();
 
         function init() {
+            vm.finds = true;
+            vm.search = 'phone';
         }
 
         function change() {
             vm.error = false;
             vm.minLengthError = false;
+        }
+
+        function toggleChanged() {
+            if (vm.finds) {
+                vm.search = 'phone';
+            } else {
+                vm.search = 'name';
+            }
         }
 
         function doSearch() {
