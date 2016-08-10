@@ -1,18 +1,4 @@
 <ion-view view-title="{{clientDetailsCtrl.name}}">
-    <!--
-        <ion-nav-buttons side="primary">
-            <button class="button button-icon ion-edit"
-                    ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
-            </button>
-        </ion-nav-buttons>
-
-        <ion-nav-buttons side="secondary">
-            <button class="button button-icon ion-close-circled"
-                    ng-click="data.showReorder = !data.showReorder; data.showDelete = false;">
-            </button>
-        </ion-nav-buttons>
-    -->
-
     <ion-nav-buttons side="secondary">
         <button class="button button-icon ion-navicon"
                 ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
@@ -20,32 +6,41 @@
     </ion-nav-buttons>
 
     <ion-content class="padding">
-        <h3>
-            <strong>Name: {{clientDetailsCtrl.name}}</strong>
-        </h3>
 
-        <h3>
-            <strong>Phone: {{clientDetailsCtrl.phone}}</strong>
-        </h3>
+        <div class="list">
+            <label class="item item-input">
+                <span class="input-label"><b>Name:</b></span>
+                <input type="text"
+                       ng-model="clientDetailsCtrl.name">
+            </label>
 
-        <h3>
-            <strong>Address: {{clientDetailsCtrl.address}}</strong>
-        </h3>
+            <label class="item item-input">
+                <span class="input-label"><b>Phone:</b></span>
+                <input type="text"
+                       ng-model="clientDetailsCtrl.phone">
+            </label>
 
-        <h3>
-            <strong>Details: {{clientDetailsCtrl.cv}}</strong>
-        </h3>
+            <label class="item item-input">
+                <span class="input-label"><b>Address:</b></span>
+                <textarea rows="2"
+                          ng-model="clientDetailsCtrl.address">
+                </textarea>
+            </label>
 
-        <h3>
-            <strong>Description: {{clientDetailsCtrl.description}}</strong>
-        </h3>
+            <label class="item item-input">
+                <span class="input-label"><b>Details:</b></span>
+                <textarea rows="2"
+                          ng-model="clientDetailsCtrl.cv">
+                </textarea>
+            </label>
 
-        <h3>
-            <strong>Id: {{clientDetailsCtrl.id}}</strong>
-        </h3>
+            <label class="item item-input">
+                <span class="input-label"><b>Description:</b></span>
+                <textarea rows="2"
+                          ng-model="clientDetailsCtrl.description">
+                </textarea>
+            </label>
+        </div>
 
-        <h3>
-            <strong>Total: {{clientDetailsCtrl.sum | number:2}}</strong>
-        </h3>
     </ion-content>
 </ion-view>
