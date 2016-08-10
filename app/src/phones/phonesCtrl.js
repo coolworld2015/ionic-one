@@ -23,11 +23,13 @@
         init();
 
         function init() {
-            vm.phones = [];
             $ionicLoading.show({
                 template: '<ion-spinner></ion-spinner>'
             });
+
+            vm.phones = [];
             vm.clear = false;
+
             PhonesService.getItems()
                 .then(function (result) {
                     vm.phones = result.data;

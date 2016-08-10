@@ -23,6 +23,7 @@
 
         function init() {
             vm.phones = items;
+            vm.phonesFilter = items;
             vm.clear = false;
         }
 
