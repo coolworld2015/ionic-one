@@ -26,11 +26,14 @@
         init();
 
         function init() {
-            vm.clients = [];
             $ionicLoading.show({
                 template: '<ion-spinner></ion-spinner>'
             });
+
+            vm.clients = [];
+            vm.clientsFilter = [];
             vm.clear = false;
+
             ClientsService.getClients()
                 .then(function (result) {
                     vm.clients = result.data;
