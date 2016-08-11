@@ -30,6 +30,7 @@
             });
 
             vm.clients = [];
+            vm.clientsFilter = [];
             vm.clear = false;
 
             ClientsService.getClients()

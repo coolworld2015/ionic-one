@@ -28,6 +28,7 @@
             });
 
             vm.phones = [];
+            vm.phonesFilter = [];
             vm.clear = false;
 
             PhonesService.getItems()
