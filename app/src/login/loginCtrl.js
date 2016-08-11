@@ -23,9 +23,7 @@
 
         function init() {
             $rootScope.currentUser = undefined;
-            $rootScope.loading = false;
-            $rootScope.error = false;
-            $rootScope.message = false;
+            $rootScope.raisedError = false;
         }
 
         function change() {
@@ -40,16 +38,11 @@
         }
 
         function checkUser(name, pass) {
-            $rootScope.myError = false;
-            $rootScope.loading = true;
-
             if ($rootScope.mode == 'ON-LINE (Heroku)') {
                 getUsersOn(name, pass);
             } else {
                 vm.users = UsersLocalStorage.getUsers();
                 check(vm.users, name, pass);
-                $rootScope.myError = false;
-                $rootScope.loading = false;
             }
         }
 
@@ -109,8 +102,7 @@
         }
 
         function errorHandler() {
-            $rootScope.loading = false;
-            $rootScope.myError = true;
+            $rootScope.raisedError = true;
             $ionicLoading.hide();
         }
     }
