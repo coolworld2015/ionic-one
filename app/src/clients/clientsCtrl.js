@@ -5,11 +5,10 @@
         .module('app')
         .controller('ClientsCtrl', ClientsCtrl);
 
-    ClientsCtrl.$inject = ['$scope', '$rootScope', '$state', 'ClientsService',
+    ClientsCtrl.$inject = ['$scope', '$rootScope', '$state', '$stateParams', 'ClientsService',
         '$ionicLoading', '$ionicPopup', '$ionicListDelegate'];
 
-    function ClientsCtrl($scope, $rootScope, $state, ClientsService,
-                         $ionicLoading, $ionicPopup, $ionicListDelegate) {
+    function ClientsCtrl($scope, $rootScope, $state, $stateParams, ClientsService, $ionicLoading, $ionicPopup, $ionicListDelegate) {
         var vm = this;
 
         angular.extend(vm, {

@@ -5,7 +5,7 @@
         .module('app')
         .controller('ClientDetailsCtrl', ClientDetailsCtrl);
 
-    ClientDetailsCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'ClientsService','$ionicLoading'];
+    ClientDetailsCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'ClientsService', '$ionicLoading'];
 
     function ClientDetailsCtrl($rootScope, $state, $stateParams, ClientsService, $ionicLoading) {
         var vm = this;
@@ -40,11 +40,10 @@
 
             ClientsService.editItem(item)
                 .then(function () {
-                    $state.go('root.clients');
+                    $ionicLoading.hide();
+                    $state.go('root.clients', {}, {reload: true});
                 })
                 .catch(errorHandler);
-
-            $ionicLoading.hide();
         }
 
         function errorHandler() {
