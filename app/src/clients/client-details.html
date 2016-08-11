@@ -1,9 +1,11 @@
 <ion-view view-title="{{clientDetailsCtrl.name}}">
+    <!--
     <ion-nav-buttons side="secondary">
         <button class="button button-icon ion-checkmark-circled"
                 ng-click="clientDetailsCtrl.clientsSubmit()">
         </button>
     </ion-nav-buttons>
+    -->
 
     <ion-content class="padding">
 
@@ -55,4 +57,9 @@
         </div>
 
     </ion-content>
+
+    <div class="badge-div" ng-click="clientDetailsCtrl.clientsSubmit()">
+        <div class="badge-check ion-checkmark"></div>
+    </div>
+
 </ion-view>

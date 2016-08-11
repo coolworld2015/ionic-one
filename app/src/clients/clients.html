@@ -11,13 +11,13 @@
                     ng-click="data.showReorder = !data.showReorder; data.showDelete = false;">
             </button>
         </ion-nav-buttons>
-    -->
 
-    <ion-nav-buttons side="right">
-        <button class="button button-icon ion-ios-plus-outline"
-                ng-click="clientsCtrl.addConfirm()">
-        </button>
-    </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <button class="button button-icon ion-ios-plus-outline"
+                    ng-click="clientsCtrl.addConfirm()">
+            </button>
+        </ion-nav-buttons>
+    -->
 
     <div class="bar bar-subheader item-input-inset bar-light">
         <label class="item-input-wrapper">
@@ -31,7 +31,6 @@
     </div>
 
     <ion-content class="has-subheader">
-
         <ion-refresher on-refresh="clientsCtrl.doRefresh()"></ion-refresher>
 
         <ion-list>
@@ -49,12 +48,10 @@
                 -->
             </ion-item>
         </ion-list>
-
-
-
     </ion-content>
 
-    <div class="div-badge">
-        <span class="span-badge">+</span>
+    <div class="badge-div" ng-click="clientsCtrl.addConfirm()">
+        <span class="badge-plus">+</span>
     </div>
+
 </ion-view>
