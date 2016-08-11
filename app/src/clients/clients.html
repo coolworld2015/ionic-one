@@ -3,9 +3,10 @@
 
     <ion-nav-buttons side="secondary">
         <button class="button button-icon ion-navicon"
-                ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+                ng-click="clientsCtrl.showAdd()">
         </button>
     </ion-nav-buttons>
+
     <!--
         <ion-nav-buttons side="secondary">
             <button class="button button-icon ion-plus-circled"
@@ -51,7 +52,7 @@
         </ion-list>
     </ion-content>
 
-    <div class="badge-div" ng-click="clientsCtrl.addConfirm()">
+    <div ng-if="clientsCtrl.addShowed" class="badge-div" ng-click="clientsCtrl.addConfirm()">
         <span class="badge-plus">+</span>
     </div>
 

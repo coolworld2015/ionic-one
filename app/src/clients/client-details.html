@@ -2,7 +2,7 @@
 
     <ion-nav-buttons side="secondary">
         <button class="button button-icon ion-navicon"
-                ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+                ng-click="clientDetailsCtrl.showSubmit()">
         </button>
     </ion-nav-buttons>
 
@@ -58,7 +58,7 @@
 
     </ion-content>
 
-    <div class="badge-div" ng-click="clientDetailsCtrl.clientsSubmit()">
+    <div ng-if="clientDetailsCtrl.submitShowed" class="badge-div" ng-click="clientDetailsCtrl.clientsSubmit()">
         <div class="badge-check ion-checkmark"></div>
     </div>
 

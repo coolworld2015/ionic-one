@@ -12,6 +12,7 @@
 
         angular.extend(vm, {
             init: init,
+            showSubmit: showSubmit,
             clientsSubmit: clientsSubmit
         });
 
@@ -20,7 +21,11 @@
         init();
 
         function init() {
-            //console.log(vm);
+            vm.submitShowed = false;
+        }
+
+        function showSubmit() {
+            vm.submitShowed = vm.submitShowed ? false : true;
         }
 
         function clientsSubmit() {

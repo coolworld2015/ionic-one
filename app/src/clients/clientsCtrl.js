@@ -13,6 +13,7 @@
 
         angular.extend(vm, {
             init: init,
+            showAdd: showAdd,
             addConfirm: addConfirm,
             showConfirm: showConfirm,
             clientDelete: clientDelete,
@@ -32,12 +33,17 @@
             vm.clients = [];
             vm.clientsFilter = [];
             vm.clear = false;
+            vm.addShowed = false;
 
             ClientsService.getClients()
                 .then(function (result) {
                     vm.clients = result.data;
                     $ionicLoading.hide();
                 });
+        }
+
+        function showAdd() {
+            vm.addShowed = vm.addShowed ? false : true;
         }
 
         function addConfirm(client) {
