@@ -12,6 +12,7 @@
 
         angular.extend(vm, {
             init: init,
+            showSearch: showSearch,
             phoneDelete: phoneDelete,
             doRefresh: doRefresh,
             queryClear: queryClear,
@@ -30,12 +31,17 @@
             vm.phones = [];
             vm.phonesFilter = [];
             vm.clear = false;
+            vm.searchShowed = false;
 
             PhonesService.getItems()
                 .then(function (result) {
                     vm.phones = result.data;
                     $ionicLoading.hide();
                 });
+        }
+
+        function showSearch() {
+            vm.searchShowed = vm.searchShowed ? false : true;
         }
 
         function phoneDelete(id) {
