@@ -30,7 +30,6 @@
             var url = webUrl + 'api/clients/add';
             return $http.post(url, item)
                 .then(function (result) {
-                    console.log(item)
                     return result;
                 });
         }

@@ -62,24 +62,9 @@
         $rootScope.mode = 'ON-LINE (Heroku)';
 
         $rootScope.myConfig = {
-            //webUrl: 'http://ui-warehouse.herokuapp.com/' //TODO Heroku MongoDB
-            webUrl: 'http://localhost:3000/' //TODO Local MongoDB
+            webUrl: 'http://ui-warehouse.herokuapp.com/' //TODO Heroku MongoDB
+            //webUrl: 'http://localhost:3000/' //TODO Local MongoDB
             //webUrl: 'http://localhost:3000/file/' //TODO Local JSON DB
         };
     }
-
-    angular
-        .module('app')
-        .directive('hideTabs', function ($rootScope) {
-            return {
-                restrict: 'A',
-                link: function ($scope, $el) {
-                    console.log(111);
-                    $rootScope.hideTabs = 'tabs-item-hide';
-                    $scope.$on('$destroy', function () {
-                        $rootScope.hideTabs = '';
-                    });
-                }
-            };
-        });
 })();

@@ -71,7 +71,6 @@
             confirmPopup.then(function (res) {
                 if (res) {
                     clientDelete(client.id);
-                    console.log('You are sure');
                 } else {
                     $ionicListDelegate.closeOptionButtons();
                     console.log('You are not sure');
@@ -83,7 +82,6 @@
             $ionicLoading.show({
                 template: '<ion-spinner></ion-spinner>'
             });
-            console.log(id);
             ClientsService.deleteItem(id)
                 .then(function () {
                     init();
