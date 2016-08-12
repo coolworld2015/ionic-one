@@ -13,7 +13,17 @@
         <ion-toggle  ng-model="phonesSearchCtrl.finds" ng-change="phonesSearchCtrl.toggleChanged()">
             Search by {{phonesSearchCtrl.search}}
         </ion-toggle>
-
+        <!--
+                <li class="item item-toggle">
+                    Search by {{phonesSearchCtrl.search}}
+                    <label class="toggle toggle-balanced active" ng-click="phonesSearchCtrl.toggleChanged()">
+                        <input type="checkbox">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </li>
+        -->
         <form ng-submit="phonesSearchCtrl.doSearch()" novalidate name="phonesSearchCtrl.form" autocomplete="off">
             <div class="list">
                 <label class="item item-input">
