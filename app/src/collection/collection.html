@@ -1,4 +1,4 @@
-<ion-view view-title="Phones ({{collectionCtrl.itemsFilter.length}} / {{collectionCtrl.items.length}})"
+<ion-view view-title="Collection ({{collectionCtrl.itemsFilter.length}} / {{collectionCtrl.items.length}})"
           ng-click="collectionCtrl.queryClear()">
 
     <ion-nav-buttons side="secondary">
@@ -29,12 +29,11 @@
         <ion-refresher on-refresh="collectionCtrl.doRefresh()"></ion-refresher>
 
         <ion-list>
-            <div
-                    collection-repeat="item in (collectionCtrl.itemsFilter = (collectionCtrl.items | filter: collectionCtrl.query))"
+            <div collection-repeat="item in (collectionCtrl.itemsFilter = (collectionCtrl.items | filter: collectionCtrl.query))"
                     type="item-text-wrap" ng-click="collectionCtrl.itemDetails(item)">
 
-                <a class="item item-thumbnail-left" href="#">
-                    <img src="{{item.pic}}">
+                <a class="item item-thumbnail-left">
+                    <img ng-src="{{item.pic}}">
                     <h2>{{item.name}}</h2>
                     <p>{{item.group}} - {{item.category}}</p>
                 </a>

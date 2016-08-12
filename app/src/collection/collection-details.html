@@ -1,4 +1,4 @@
-<ion-view view-title="{{phoneDetailsCtrl.name}}">
+<ion-view view-title="{{collectionDetailsCtrl.name}}">
     <ion-nav-buttons side="secondary">
         <button class="button button-icon ion-navicon"
                 ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
@@ -7,50 +7,43 @@
 
     <ion-content class="padding">
 
-        <h2 align="center">{{phoneDetailsCtrl.name}}</h2>
+        <h2 align="center">{{collectionDetailsCtrl.name}}</h2>
 
         <div class="list">
+			<label class="item  ">
+				<img ng-src="{{collectionDetailsCtrl.pic}}" style="width:100%">
+			</label>
+		
             <label class="item item-input">
                 <span class="input-label"><b>Name:</b></span>
                 <input type="text"
-                       ng-model="phoneDetailsCtrl.name">
+                       ng-model="collectionDetailsCtrl.name">
             </label>
 
             <label class="item item-input">
                 <span class="input-label"><b>ID:</b></span>
                 <input type="text"
-                       ng-model="phoneDetailsCtrl.id">
+                       ng-model="collectionDetailsCtrl.id">
             </label>
 
             <label class="item item-input">
-                <span class="input-label"><b>Phone:</b></span>
+                <span class="input-label"><b>Group:</b></span>
                 <input type="text"
-                       ng-model="phoneDetailsCtrl.phone">
+                       ng-model="collectionDetailsCtrl.group">
             </label>
 
             <label class="item item-input">
-                <span class="input-label"><b>Str:</b></span>
+                <span class="input-label"><b>Category:</b></span>
                 <input type="text"
-                       ng-model="phoneDetailsCtrl.street">
+                       ng-model="collectionDetailsCtrl.category">
             </label>
 
             <label class="item item-input">
-                <span class="input-label"><b>House:</b></span>
+                <span class="input-label"><b>Description:</b></span>
                 <input type="text"
-                       ng-model="phoneDetailsCtrl.house">
+                       ng-model="collectionDetailsCtrl.description">
             </label>
 
-            <label class="item item-input">
-                <span class="input-label"><b>Apt:</b></span>
-                <input type="text"
-                       ng-model="phoneDetailsCtrl.apt">
-            </label>
-
-            <label class="item item-input">
-                <span class="input-label"><b>Zip:</b></span>
-                <input type="text"
-                       ng-model="phoneDetailsCtrl.index">
-            </label>
         </div>
 
     </ion-content>

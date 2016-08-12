@@ -22,7 +22,6 @@
         init();
 
         function init() {
-            console.log(111);
             vm.name = '';
             vm.pass = '';
             $rootScope.currentUser = undefined;

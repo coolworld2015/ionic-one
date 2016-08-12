@@ -40,7 +40,22 @@
                     }
                 }
             })
-
+			
+            .state('root.collection-details', {
+                url: '/collection-details',
+                data: {
+                    requireLogin: true
+                },
+                params: {item: {}},
+                views: {
+                    'root-collection': {
+                        templateUrl: 'collection/collection-details.html',
+                        controller: 'CollectionDetailsCtrl',
+                        controllerAs: 'collectionDetailsCtrl'
+                    }
+                }
+            })
+			
             .state('root.clients', {
                 url: '/clients',
                 data: {

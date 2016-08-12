@@ -17,7 +17,7 @@
             doRefresh: doRefresh,
             queryClear: queryClear,
             queryChanged: queryChanged,
-            phoneDetails: phoneDetails,
+            itemDetails: itemDetails,
             itemsSearch: itemsSearch
         });
 
@@ -77,8 +77,8 @@
             vm.clear = false;
         }
 
-        function phoneDetails(item) {
-            $state.go('root.phone-details', {item: item});
+        function itemDetails(item) {
+            $state.go('root.collection-details', {item: item});
         }
 
 
