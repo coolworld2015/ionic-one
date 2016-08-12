@@ -56,6 +56,62 @@
                 }
             })
 			
+			.state('root.collection-search', {
+                url: '/collection-search',
+                data: {
+                    requireLogin: true
+                },
+                views: {
+                    'root-collection': {
+                        templateUrl: 'collection/collection-search.html',
+                        controller: 'CollectionSearchCtrl',
+                        controllerAs: 'collectionSearchCtrl'
+                    }
+                }
+            })
+			
+			.state('root.collection-search-results', {
+                url: '/collection-search-results?name?search?finds',
+                data: {
+                    requireLogin: true
+                },
+                views: {
+                    'root-collection': {
+                        templateUrl: 'collection/collection-search-results.html',
+                        controller: 'CollectionSearchResultsCtrl',
+                        controllerAs: 'collectionSearchResultsCtrl'
+                    }
+                },
+                resolve: {
+                    items: ['$http', '$stateParams', '$rootScope', '$ionicLoading',
+                        function ($http, $stateParams, $rootScope, $ionicLoading) {
+                            var api;
+                            var name = $stateParams.name;
+                            var type = $stateParams.search;
+
+                            if (type == 'name') {
+                                api = 'api/items/findByName/';
+                            } else {
+                                api = 'api/items/findByPhone/';
+                            }
+
+                            //var webUrl = $rootScope.myConfig.webUrl + api;
+                            var webUrl = 'http://ui-collection.herokuapp.com/' + api;
+                            return $http.get(webUrl + name)
+                                .then(function (data) {
+                                    $ionicLoading.hide();
+                                    return data.data;
+                                })
+                                .catch(function () {
+                                    $rootScope.loading = false;
+                                    $rootScope.error = true;
+                                    return [];
+                                });
+                        }
+                    ]
+                }
+            })
+			
             .state('root.clients', {
                 url: '/clients',
                 data: {

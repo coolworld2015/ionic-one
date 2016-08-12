@@ -83,7 +83,7 @@
 
 
         function itemsSearch() {
-            $state.go('root.items-search');
+            $state.go('root.collection-search');
         }
 
         function errorHandler() {
