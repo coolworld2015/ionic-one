@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('ClientDetailsCtrl', ClientDetailsCtrl);
+        .controller('ClientAddCtrl', ClientAddCtrl);
 
-    ClientDetailsCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'ClientsService', '$ionicLoading'];
+    ClientAddCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'ClientsService', '$ionicLoading'];
 
-    function ClientDetailsCtrl($rootScope, $state, $stateParams, ClientsService, $ionicLoading) {
+    function ClientAddCtrl($rootScope, $state, $stateParams, ClientsService, $ionicLoading) {
         var vm = this;
 
         angular.extend(vm, {
@@ -29,6 +29,10 @@
         }
 
         function clientSubmit() {
+            if (vm.form.$invalid) {
+                return;
+            }
+
             $ionicLoading.show({
                 template: '<ion-spinner></ion-spinner>'
             });

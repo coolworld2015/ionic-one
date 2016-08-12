@@ -9,6 +9,8 @@
 
     <ion-content class="padding">
 
+        <h2 align="center">{{clientDetailsCtrl.name}}</h2>
+
         <div class="list">
             <label class="item item-input">
                 <span class="input-label"><b>Name:</b></span>
@@ -58,7 +60,7 @@
 
     </ion-content>
 
-    <div ng-if="clientDetailsCtrl.submitShowed" class="badge-div" ng-click="clientDetailsCtrl.clientsSubmit()">
+    <div ng-if="clientDetailsCtrl.submitShowed" class="badge-div" ng-click="clientDetailsCtrl.clientSubmit()">
         <div class="badge-icon ion-checkmark"></div>
     </div>
 

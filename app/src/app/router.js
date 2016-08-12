@@ -56,6 +56,21 @@
                 }
             })
 
+            .state('root.client-add', {
+                url: '/client-add',
+                data: {
+                    requireLogin: true
+                },
+                params: {item: {}},
+                views: {
+                    'root-clients': {
+                        templateUrl: 'clients/client-add.html',
+                        controller: 'ClientAddCtrl',
+                        controllerAs: 'clientAddCtrl'
+                    }
+                }
+            })
+
             .state('root.goods', {
                 url: '/goods',
                 data: {

@@ -1,0 +1,60 @@
+<ion-view view-title="Add new item">
+
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-navicon"
+                ng-click="clientAddCtrl.showSubmit()">
+        </button>
+    </ion-nav-buttons>
+
+
+    <ion-content class="padding">
+
+        <h2 align="center">Add new item</h2>
+
+        <form ng-submit="clientAddCtrl.clientSubmit()" novalidate name="clientAddCtrl.form" autocomplete="off">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label"><b>Name:</b></span>
+                    <input type="text"
+                           ng-model="clientAddCtrl.name">
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label"><b>Phone:</b></span>
+                    <input type="text"
+                           ng-model="clientAddCtrl.phone">
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label"><b>Address:</b></span>
+                    <textarea rows="2"
+                              ng-model="clientAddCtrl.address">
+                    </textarea>
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label"><b>Details:</b></span>
+                    <textarea rows="2"
+                              ng-model="clientAddCtrl.cv">
+                    </textarea>
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label"><b>Description:</b></span>
+                    <textarea rows="2"
+                              ng-model="clientAddCtrl.description">
+                    </textarea>
+                </label>
+            </div>
+
+            <div ng-show="clientAddCtrl.error" class="valid fix">
+                Error. Wrong name or password
+            </div>
+            <button type="submit" class="button button-block button-positive"
+                    style="background-color: #417D9A !important;">
+                <strong>Submit</strong>
+            </button>
+        </form>
+    </ion-content>
+
+</ion-view>

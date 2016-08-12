@@ -20,6 +20,7 @@
             doRefresh: doRefresh,
             queryClear: queryClear,
             queryChanged: queryChanged,
+            clientAdd: clientAdd,
             clientDetails: clientDetails
         });
 
@@ -111,6 +112,10 @@
         function queryClear() {
             vm.query = '';
             vm.clear = false;
+        }
+
+        function clientAdd() {
+            $state.go('root.client-add');
         }
 
         function clientDetails(item) {
