@@ -37,17 +37,18 @@
                 template: '<ion-spinner></ion-spinner>'
             });
 
+            var id = (Math.random() * 1000000).toFixed();
             var item = {
-                id: vm.id,
+                id: id,
                 name: vm.name,
                 address: vm.address,
                 phone: vm.phone,
-                sum: vm.sum,
+                description: vm.description,
                 cv: vm.cv,
-                description: vm.description
+                sum: 0
             };
 
-            ClientsService.editItem(item)
+            ClientsService.addItem(item)
                 .then(function () {
                     $ionicLoading.hide();
                     $state.go('root.clients', {}, {reload: true});
@@ -56,8 +57,7 @@
         }
 
         function errorHandler() {
-            $rootScope.loading = false;
-            $rootScope.myError = true;
+            $rootScope.raisedError = true;
             $ionicLoading.hide();
         }
     }

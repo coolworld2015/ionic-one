@@ -123,8 +123,7 @@
         }
 
         function errorHandler() {
-            $rootScope.loading = false;
-            $rootScope.myError = true;
+            $rootScope.raisedError = true;
             $ionicLoading.hide();
         }
     }

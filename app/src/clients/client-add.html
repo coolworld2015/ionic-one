@@ -16,35 +16,70 @@
                 <label class="item item-input">
                     <span class="input-label"><b>Name:</b></span>
                     <input type="text"
-                           ng-model="clientAddCtrl.name">
+                           ng-model="clientAddCtrl.name"
+                           placeholder="Name"
+                           name="name"
+                           ng-change="clientAddCtrl.change()" required>
                 </label>
+
+                <div ng-if="clientAddCtrl.form.$submitted">
+                    <div ng-show="clientAddCtrl.form.name.$error.required" class="valid">Value required</div>
+                </div>
 
                 <label class="item item-input">
                     <span class="input-label"><b>Phone:</b></span>
                     <input type="text"
-                           ng-model="clientAddCtrl.phone">
+                           ng-model="clientAddCtrl.phone"
+                           placeholder="Phone"
+                           name="phone"
+                           ng-change="clientAddCtrl.change()" required>
                 </label>
+
+                <div ng-if="clientAddCtrl.form.$submitted">
+                    <div ng-show="clientAddCtrl.form.phone.$error.required" class="valid">Value required</div>
+                </div>
 
                 <label class="item item-input">
                     <span class="input-label"><b>Address:</b></span>
                     <textarea rows="2"
-                              ng-model="clientAddCtrl.address">
+                              ng-model="clientAddCtrl.address"
+                              placeholder="Address"
+                              name="address"
+                              ng-change="clientAddCtrl.change()" required>
                     </textarea>
                 </label>
+
+                <div ng-if="clientAddCtrl.form.$submitted">
+                    <div ng-show="clientAddCtrl.form.address.$error.required" class="valid">Value required</div>
+                </div>
 
                 <label class="item item-input">
                     <span class="input-label"><b>Details:</b></span>
                     <textarea rows="2"
-                              ng-model="clientAddCtrl.cv">
+                              ng-model="clientAddCtrl.cv"
+                              placeholder="Details"
+                              name="cv"
+                              ng-change="clientAddCtrl.change()" required>
                     </textarea>
                 </label>
+
+                <div ng-if="clientAddCtrl.form.$submitted">
+                    <div ng-show="clientAddCtrl.form.cv.$error.required" class="valid">Value required</div>
+                </div>
 
                 <label class="item item-input">
                     <span class="input-label"><b>Description:</b></span>
                     <textarea rows="2"
-                              ng-model="clientAddCtrl.description">
+                              ng-model="clientAddCtrl.description"
+                              placeholder="Description"
+                              name="description"
+                              ng-change="clientAddCtrl.change()" required>
                     </textarea>
                 </label>
+
+                <div ng-if="clientAddCtrl.form.$submitted">
+                    <div ng-show="clientAddCtrl.form.description.$error.required" class="valid">Value required</div>
+                </div>
             </div>
 
             <div ng-show="clientAddCtrl.error" class="valid fix">
