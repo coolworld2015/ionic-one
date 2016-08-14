@@ -26,7 +26,36 @@
                     }
                 }
             })
-
+			
+            .state('root.movies', {
+                url: '/movies',
+                data: {
+                    requireLogin: true
+                },
+                views: {
+                    'root-movies': {
+                        templateUrl: 'movies/movies.html',
+                        controller: 'MoviesCtrl',
+                        controllerAs: 'moviesCtrl'
+                    }
+                }
+            })
+			
+			.state('root.movies-details', {
+                url: '/movies-details',
+                data: {
+                    requireLogin: true
+                },
+                params: {item: {}},
+                views: {
+                    'root-movies': {
+                        templateUrl: 'movies/movies-details.html',
+                        controller: 'MoviesDetailsCtrl',
+                        controllerAs: 'moviesDetailsCtrl'
+                    }
+                }
+            })
+			
             .state('root.collection', {
                 url: '/collection',
                 data: {
