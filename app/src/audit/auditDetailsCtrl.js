@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('PhoneDetailsCtrl', PhoneDetailsCtrl);
+        .controller('AuditDetailsCtrl', AuditDetailsCtrl);
 
-    PhoneDetailsCtrl.$inject = ['$stateParams'];
+    AuditDetailsCtrl.$inject = ['$stateParams', '$filter'];
 
-    function PhoneDetailsCtrl($stateParams) {
+    function AuditDetailsCtrl($stateParams, $filter) {
         var vm = this;
 
         angular.extend(vm, {
@@ -19,6 +19,7 @@
         init();
 
         function init() {
+			vm.ip = $filter('ipfilter')(vm.ip);
         }
     }
 
