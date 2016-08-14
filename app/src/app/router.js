@@ -103,56 +103,12 @@
                                     return data.data;
                                 })
                                 .catch(function () {
-                                    $rootScope.loading = false;
-                                    $rootScope.error = true;
+									$rootScope.raisedError = true;
+									$ionicLoading.hide();
                                     return [];
                                 });
                         }
                     ]
-                }
-            })
-			
-            .state('root.users', {
-                url: '/users',
-                data: {
-                    requireLogin: true
-                },
-                views: {
-                    'root-users': {
-                        templateUrl: 'users/users.html',
-                        controller: 'UsersCtrl',
-                        controllerAs: 'usersCtrl'
-                    }
-                }
-            })			
-		
-            .state('root.user-details', {
-                url: '/user-details',
-                data: {
-                    requireLogin: true
-                },
-                params: {item: {}},
-                views: {
-                    'root-users': {
-                        templateUrl: 'users/user-details.html',
-                        controller: 'UserDetailsCtrl',
-                        controllerAs: 'userDetailsCtrl'
-                    }
-                }
-            })
-			
-            .state('root.user-add', {
-                url: '/user-add',
-                data: {
-                    requireLogin: true
-                },
-                params: {item: {}},
-                views: {
-                    'root-users': {
-                        templateUrl: 'users/user-add.html',
-                        controller: 'UserAddCtrl',
-                        controllerAs: 'userAddCtrl'
-                    }
                 }
             })
 			
@@ -317,8 +273,8 @@
                                     return data.data;
                                 })
                                 .catch(function () {
-                                    $rootScope.loading = false;
-                                    $rootScope.error = true;
+									$rootScope.raisedError = true;
+									$ionicLoading.hide();
                                     return [];
                                 });
                         }
@@ -354,7 +310,51 @@
                     }
                 }
             })
-
+			
+           .state('root.users', {
+                url: '/users',
+                data: {
+                    requireLogin: true
+                },
+                views: {
+                    'root-users': {
+                        templateUrl: 'users/users.html',
+                        controller: 'UsersCtrl',
+                        controllerAs: 'usersCtrl'
+                    }
+                }
+            })			
+		
+            .state('root.user-details', {
+                url: '/user-details',
+                data: {
+                    requireLogin: true
+                },
+                params: {item: {}},
+                views: {
+                    'root-users': {
+                        templateUrl: 'users/user-details.html',
+                        controller: 'UserDetailsCtrl',
+                        controllerAs: 'userDetailsCtrl'
+                    }
+                }
+            })
+			
+            .state('root.user-add', {
+                url: '/user-add',
+                data: {
+                    requireLogin: true
+                },
+                params: {item: {}},
+                views: {
+                    'root-users': {
+                        templateUrl: 'users/user-add.html',
+                        controller: 'UserAddCtrl',
+                        controllerAs: 'userAddCtrl'
+                    }
+                }
+            })
+			
 			.state('login', {
                 url: '/login',
                 data: {

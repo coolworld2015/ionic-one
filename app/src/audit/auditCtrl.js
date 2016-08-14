@@ -13,12 +13,11 @@
         angular.extend(vm, {
             init: init,
             showSearch: showSearch,
-            phoneDelete: phoneDelete,
             doRefresh: doRefresh,
             queryClear: queryClear,
             queryChanged: queryChanged,
-            phoneDetails: phoneDetails,
-            phonesSearch: phonesSearch
+            auditDetails: auditDetails,
+			_errorHandler: errorHandler
         });
 
         init();
@@ -28,14 +27,14 @@
                 template: '<ion-spinner></ion-spinner>'
             });
 
-            vm.phones = [];
-            vm.phonesFilter = [];
+            vm.audits = [];
+            vm.auditFilter = [];
             vm.clear = false;
             vm.searchShowed = false;
 
             AuditService.getAudit()
                 .then(function (result) {
-                    vm.phones = result.data;
+                    vm.audits = result.data;
                     $ionicLoading.hide();
                 });
         }
@@ -44,24 +43,12 @@
             vm.searchShowed = vm.searchShowed ? false : true;
         }
 
-        function phoneDelete(id) {
-            $ionicLoading.show({
-                template: '<ion-spinner></ion-spinner>'
-            });
-            PhonesService.deleteItem(id)
-                .then(function () {
-                    init();
-                })
-                .catch(errorHandler);
-            $ionicLoading.hide();
-        }
-
         function doRefresh() {
-            vm.phones = [];
+            vm.audits = [];
             vm.clear = false;
-            PhonesService.getItems()
+            AuditService.getAudit()
                 .then(function (result) {
-                    vm.phones = result.data;
+                    vm.audits = result.data;
                     $scope.$broadcast('scroll.refreshComplete');
                 });
         }
@@ -77,18 +64,12 @@
             vm.clear = false;
         }
 
-        function phoneDetails(item) {
-            $state.go('root.phone-details', {item: item});
-        }
-
-
-        function phonesSearch() {
-            $state.go('root.phones-search');
+        function auditDetails(item) {
+            $state.go('root.audit-details', {item: item});
         }
 
         function errorHandler() {
-            $rootScope.loading = false;
-            $rootScope.myError = true;
+            $rootScope.raisedError = true;
             $ionicLoading.hide();
         }
 

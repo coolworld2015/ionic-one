@@ -1,4 +1,4 @@
-<ion-view view-title="Audit ({{auditCtrl.phonesFilter.length}} / {{auditCtrl.phones.length}})"
+<ion-view view-title="Audit ({{auditCtrl.auditFilter.length}} / {{auditCtrl.audits.length}})"
           ng-click="auditCtrl.queryClear()">
 
     <ion-nav-buttons side="secondary">
@@ -6,14 +6,6 @@
                 ng-click="auditCtrl.showSearch()">
         </button>
     </ion-nav-buttons>
-
-    <!--
-    <ion-nav-buttons side="secondary">
-        <button class="button button-icon ion-search"
-                ng-click="auditCtrl.phonesSearch()">
-        </button>
-    </ion-nav-buttons>
-    -->
 
     <div class="bar bar-subheader item-input-inset bar-light">
         <label class="item-input-wrapper">
@@ -30,9 +22,9 @@
 
         <ion-list>
             <ion-item
-                    collection-repeat="phone in (auditCtrl.phonesFilter = (auditCtrl.phones | filter: auditCtrl.query))"
-                    type="item-text-wrap" ng-click="auditCtrl.phoneDetails(phone)">
-                <h2><strong>{{phone.name}} - {{phone.date}}</strong></h2>
+                    collection-repeat="audit in (auditCtrl.auditFilter = (auditCtrl.audits | filter: auditCtrl.query))"
+                    type="item-text-wrap" ng-click="auditCtrl.auditDetails(audit)">
+                <h2><strong>{{audit.name}} - {{audit.date}}</strong></h2>
             </ion-item>
         </ion-list>
 
