@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('UserDetailsCtrl', UserDetailsCtrl);
+        .controller('UserAddCtrl', UserAddCtrl);
 
-    UserDetailsCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'UsersService', '$ionicLoading'];
+    UserAddCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'UsersService', '$ionicLoading'];
 
-    function UserDetailsCtrl($rootScope, $state, $stateParams, UsersService, $ionicLoading) {
+    function UserAddCtrl($rootScope, $state, $stateParams, UsersService, $ionicLoading) {
         var vm = this;
 
         angular.extend(vm, {
@@ -29,18 +29,23 @@
         }
 
         function userSubmit() {
+            if (vm.form.$invalid) {
+                return;
+            }
+
             $ionicLoading.show({
                 template: '<ion-spinner></ion-spinner>'
             });
 
+            var id = (Math.random() * 1000000).toFixed();
             var item = {
-                id: vm.id,
+                id: id,
                 name: vm.name,
                 pass: vm.pass,
                 description: vm.description
             };
 
-            UsersService.editItem(item)
+            UsersService.addItem(item)
                 .then(function () {
                     $ionicLoading.hide();
                     $state.go('root.users', {}, {reload: true});

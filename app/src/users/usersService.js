@@ -16,14 +16,15 @@
             findByName: findByName,
             addItem: addItem,
             editItem: editItem,
-            deleteItem: deleteItem
+            deleteItem: deleteItem,
+			_sort: sort
         };
 		
         function getUsers() {
             var url = webUrl + 'api/users/get';
             return $http.get(url)
                 .then(function (result) {
-                    result.data.sort();
+                    result.data.sort(sort);
                     return result;
                 });
         }
@@ -63,5 +64,16 @@
                     return result;
                 });
         }
+		
+        function sort(a, b) {
+            var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
+            if (nameA < nameB) {
+                return -1
+            }
+            if (nameA > nameB) {
+                return 1
+            }
+            return 0;
+        }		
     }
 })();

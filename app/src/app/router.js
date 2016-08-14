@@ -135,8 +135,23 @@
                 views: {
                     'root-users': {
                         templateUrl: 'users/user-details.html',
-                        controller: 'UsersDetailsCtrl',
+                        controller: 'UserDetailsCtrl',
                         controllerAs: 'userDetailsCtrl'
+                    }
+                }
+            })
+			
+            .state('root.user-add', {
+                url: '/user-add',
+                data: {
+                    requireLogin: true
+                },
+                params: {item: {}},
+                views: {
+                    'root-users': {
+                        templateUrl: 'users/user-add.html',
+                        controller: 'UserAddCtrl',
+                        controllerAs: 'userAddCtrl'
                     }
                 }
             })
