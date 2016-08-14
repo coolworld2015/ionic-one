@@ -1,88 +1,96 @@
-(function () {
+﻿(function () {
     'use strict';
 
     angular
         .module('app')
         .controller('AuditCtrl', AuditCtrl);
 
-    AuditCtrl.$inject = ['$scope', '$rootScope', '$state', '$timeout', 'audit'];
+    AuditCtrl.$inject = ['$scope', '$rootScope', '$state', 'AuditService', '$ionicLoading'];
 
-    function AuditCtrl($scope, $rootScope, $state, $timeout, audit) {
-        $scope.$watch('numPerPage', currentPage);
-        $scope.$watch('currentPage', currentPage);
+    function AuditCtrl($scope, $rootScope, $state, AuditService, $ionicLoading) {
         var vm = this;
 
         angular.extend(vm, {
             init: init,
-            currentPage: currentPage,
-            auditEditForm: auditEditForm,
-            auditAdd: auditAdd,
-            goToBack: goToBack,
-            goToHead: goToHead,
-            auditBack: auditBack,
-            _errorHandler: errorHandler
-        });
-
-        $timeout(function () {
-            window.scrollTo(0, 0);
+            showSearch: showSearch,
+            phoneDelete: phoneDelete,
+            doRefresh: doRefresh,
+            queryClear: queryClear,
+            queryChanged: queryChanged,
+            phoneDetails: phoneDetails,
+            phonesSearch: phonesSearch
         });
 
         init();
 
         function init() {
-            vm.title = 'Audit';
-            vm.audit = audit;
-            vm.auditFilter = [];
+            $ionicLoading.show({
+                template: '<ion-spinner></ion-spinner>'
+            });
 
-            $scope.currentPage = 1;
-            $scope.numPerPage = 10;
-            $scope.maxSize = 5;
+            vm.phones = [];
+            vm.phonesFilter = [];
+            vm.clear = false;
+            vm.searchShowed = false;
 
-            $rootScope.myError = false;
-            $rootScope.loading = false;
+            AuditService.getAudit()
+                .then(function (result) {
+                    vm.phones = result.data;
+                    $ionicLoading.hide();
+                });
         }
 
-        function currentPage() {
-            if (Object.prototype.toString.call(vm.audit) == '[object Array]') {
-                var begin = (($scope.currentPage - 1) * $scope.numPerPage);
-                var end = parseInt(begin) + parseInt($scope.numPerPage);
-                $scope.filteredAudit = vm.audit.slice(begin, end);
-                $scope.totalItems = vm.audit.length;
+        function showSearch() {
+            vm.searchShowed = vm.searchShowed ? false : true;
+        }
+
+        function phoneDelete(id) {
+            $ionicLoading.show({
+                template: '<ion-spinner></ion-spinner>'
+            });
+            PhonesService.deleteItem(id)
+                .then(function () {
+                    init();
+                })
+                .catch(errorHandler);
+            $ionicLoading.hide();
+        }
+
+        function doRefresh() {
+            vm.phones = [];
+            vm.clear = false;
+            PhonesService.getItems()
+                .then(function (result) {
+                    vm.phones = result.data;
+                    $scope.$broadcast('scroll.refreshComplete');
+                });
+        }
+
+        function queryChanged() {
+            if (vm.query != '') {
+                vm.clear = true;
             }
         }
 
-        function auditEditForm(item) {
-            $rootScope.loading = true;
-            $timeout(function () {
-                $state.go('audit-edit', {item: item});
-            }, 100);
+        function queryClear() {
+            vm.query = '';
+            vm.clear = false;
         }
 
-        function auditAdd() {
-            $rootScope.loading = true;
-            $timeout(function () {
-                $state.go('audit-add');
-            }, 100);
+        function phoneDetails(item) {
+            $state.go('root.phone-details', {item: item});
         }
 
-        function goToBack() {
-            $scope.$broadcast('scrollHere');
-        }
 
-        function goToHead() {
-            $scope.$broadcast('scrollThere');
-        }
-
-        function auditBack() {
-            $rootScope.loading = true;
-            $timeout(function () {
-                $state.go('main');
-            }, 100);
+        function phonesSearch() {
+            $state.go('root.phones-search');
         }
 
         function errorHandler() {
             $rootScope.loading = false;
             $rootScope.myError = true;
+            $ionicLoading.hide();
         }
+
     }
 })();

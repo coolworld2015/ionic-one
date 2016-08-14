@@ -326,7 +326,36 @@
                 }
             })
 
-            .state('login', {
+            .state('root.audit', {
+                url: '/audit',
+                data: {
+                    requireLogin: true
+                },
+                views: {
+                    'root-audit': {
+                        templateUrl: 'audit/audit.html',
+                        controller: 'AuditCtrl',
+                        controllerAs: 'auditCtrl'
+                    }
+                }
+            })
+
+            .state('root.audit-details', {
+                url: '/audit-details',
+                data: {
+                    requireLogin: true
+                },
+                params: {item: {}},
+                views: {
+                    'root-audit': {
+                        templateUrl: 'audit/audit-details.html',
+                        controller: 'AuditDetailsCtrl',
+                        controllerAs: 'auditDetailsCtrl'
+                    }
+                }
+            })
+
+			.state('login', {
                 url: '/login',
                 data: {
                     requireLogin: false
@@ -335,7 +364,7 @@
                 controller: 'LoginCtrl',
                 controllerAs: 'loginCtrl'
             });
-
+			
         $urlRouterProvider.otherwise('login');
     }
 
