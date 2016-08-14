@@ -23,7 +23,7 @@
 
         <ion-list>
             <ion-item
-                    collection-repeat="user in (usersCtrl.clientsFilter = (usersCtrl.users | filter:usersCtrl.query))"
+                    collection-repeat="user in (usersCtrl.usersFilter = (usersCtrl.users | filter:usersCtrl.query))"
                     type="item-text-wrap" ng-click="usersCtrl.userDetails(user)">
                 <h2><strong>{{user.name}}</strong></h2>
 

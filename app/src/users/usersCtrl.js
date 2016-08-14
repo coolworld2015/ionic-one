@@ -20,7 +20,7 @@
             doRefresh: doRefresh,
             queryClear: queryClear,
             queryChanged: queryChanged,
-            clientAdd: clientAdd,
+            userAdd: userAdd,
             userDetails: userDetails
         });
 
@@ -112,7 +112,7 @@
             vm.clear = false;
         }
 
-        function clientAdd() {
+        function userAdd() {
             $state.go('root.user-add');
         }
 

@@ -124,6 +124,21 @@
                         controllerAs: 'usersCtrl'
                     }
                 }
+            })			
+		
+            .state('root.user-details', {
+                url: '/user-details',
+                data: {
+                    requireLogin: true
+                },
+                params: {item: {}},
+                views: {
+                    'root-users': {
+                        templateUrl: 'users/user-details.html',
+                        controller: 'UsersDetailsCtrl',
+                        controllerAs: 'userDetailsCtrl'
+                    }
+                }
             })
 			
             .state('root.clients', {
