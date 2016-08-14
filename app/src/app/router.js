@@ -112,6 +112,20 @@
                 }
             })
 			
+            .state('root.users', {
+                url: '/users',
+                data: {
+                    requireLogin: true
+                },
+                views: {
+                    'root-users': {
+                        templateUrl: 'users/users.html',
+                        controller: 'UsersCtrl',
+                        controllerAs: 'usersCtrl'
+                    }
+                }
+            })
+			
             .state('root.clients', {
                 url: '/clients',
                 data: {

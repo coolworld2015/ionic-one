@@ -5,84 +5,124 @@
         .module('app')
         .controller('UsersCtrl', UsersCtrl);
 
-    UsersCtrl.$inject = ['$scope', '$rootScope', '$state', '$timeout', 'users'];
+    UsersCtrl.$inject = ['$scope', '$rootScope', '$state', '$stateParams', 'UsersService',
+        '$ionicLoading', '$ionicPopup', '$ionicListDelegate'];
 
-    function UsersCtrl($scope, $rootScope, $state, $timeout, users) {
-        $scope.$watch('numPerPage', currentPage);
-        $scope.$watch('currentPage', currentPage);
+    function UsersCtrl($scope, $rootScope, $state, $stateParams, UsersService, $ionicLoading, $ionicPopup, $ionicListDelegate) {
         var vm = this;
 
         angular.extend(vm, {
             init: init,
-            currentPage: currentPage,
-            usersEditForm: usersEditForm,
-            usersAdd: usersAdd,
-            goToBack: goToBack,
-            goToHead: goToHead,
-            usersBack: usersBack,
-            _errorHandler: errorHandler
-        });
-
-        $timeout(function () {
-            window.scrollTo(0, 0);
+            showAdd: showAdd,
+            addConfirm: addConfirm,
+            showConfirm: showConfirm,
+            userDelete: userDelete,
+            doRefresh: doRefresh,
+            queryClear: queryClear,
+            queryChanged: queryChanged,
+            clientAdd: clientAdd,
+            userDetails: userDetails
         });
 
         init();
 
         function init() {
-            vm.title = 'Users';
-            vm.users = users;
+            $ionicLoading.show({
+                template: '<ion-spinner></ion-spinner>'
+            });
+
+            vm.users = [];
             vm.usersFilter = [];
+            vm.clear = false;
+            vm.addShowed = false;
 
-            $scope.currentPage = 1;
-            $scope.numPerPage = 10;
-            $scope.maxSize = 5;
-
-            $rootScope.myError = false;
-            $rootScope.loading = false;
+            UsersService.getUsers()
+                .then(function (result) {
+                    vm.users = result.data;
+                    $ionicLoading.hide();
+                });
         }
 
-        function currentPage() {
-            if (Object.prototype.toString.call(vm.users) == '[object Array]') {
-                var begin = (($scope.currentPage - 1) * $scope.numPerPage);
-                var end = parseInt(begin) + parseInt($scope.numPerPage);
-                $scope.filteredUsers = vm.users.slice(begin, end);
-                $scope.totalItems = vm.users.length;
+        function showAdd() {
+            vm.addShowed = vm.addShowed ? false : true;
+        }
+
+        function addConfirm(user) {
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Add user',
+                template: 'Are you sure you want to add new users?'
+            });
+
+            confirmPopup.then(function (res) {
+                if (res) {
+                    console.log('You are sure');
+                } else {
+                    console.log('You are not sure');
+                }
+            });
+        }
+
+        function showConfirm(user) {
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Delete user',
+                template: 'Are you sure you want to delete ' + user.name + '?'
+            });
+
+            confirmPopup.then(function (res) {
+                if (res) {
+                    userDelete(user.id);
+                } else {
+                    $ionicListDelegate.closeOptionButtons();
+                    console.log('You are not sure');
+                }
+            });
+        }
+
+        function userDelete(id) {
+            $ionicLoading.show({
+                template: '<ion-spinner></ion-spinner>'
+            });
+            UsersService.deleteItem(id)
+                .then(function () {
+                    init();
+                })
+                .catch(errorHandler);
+
+            $ionicLoading.hide();
+        }
+
+        function doRefresh() {
+            vm.user = [];
+            vm.clear = false;
+            UsersService.getUsers()
+                .then(function (result) {
+                    vm.users = result.data;
+                    $scope.$broadcast('scroll.refreshComplete');
+                });
+        }
+
+        function queryChanged() {
+            if (vm.query != '') {
+                vm.clear = true;
             }
         }
 
-        function usersEditForm(item) {
-            $rootScope.loading = true;
-            $timeout(function () {
-                $state.go('users-edit', {item: item});
-            }, 100);
+        function queryClear() {
+            vm.query = '';
+            vm.clear = false;
         }
 
-        function usersAdd() {
-            $rootScope.loading = true;
-            $timeout(function () {
-                $state.go('users-add');
-            }, 100);
+        function clientAdd() {
+            $state.go('root.user-add');
         }
 
-        function goToBack() {
-            $scope.$broadcast('scrollHere');
-        }
-
-        function goToHead() {
-            $scope.$broadcast('scrollThere');
-        }
-
-        function usersBack() {
-            $rootScope.loading = true;
-            $timeout(function () {
-                $state.go('main');
-            }, 100);
+        function userDetails(item) {
+            $state.go('root.user-details', {item: item});
         }
 
         function errorHandler() {
-            $rootScope.loading = false;
-            $rootScope.myError = true;
+            $rootScope.raisedError = true;
+            $ionicLoading.hide();
         }
     }
 })();

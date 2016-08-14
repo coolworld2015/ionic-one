@@ -5,9 +5,9 @@
         .module('app')
         .controller('LoginCtrl', LoginCtrl);
 
-    LoginCtrl.$inject = ['$ionicLoading', '$rootScope', '$state', 'UsersService', 'UsersLocalStorage', 'AuditService'];
+    LoginCtrl.$inject = ['$ionicLoading', '$rootScope', '$state', 'UsersService', 'AuditService'];
 
-    function LoginCtrl($ionicLoading, $rootScope, $state, UsersService, UsersLocalStorage, AuditService) {
+    function LoginCtrl($ionicLoading, $rootScope, $state, UsersService, AuditService) {
         var vm = this;
 
         angular.extend(vm, {

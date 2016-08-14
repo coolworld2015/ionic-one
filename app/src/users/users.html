@@ -1,38 +1,42 @@
-<center>
-    <div class="header">Budget</div>
-    <br><br>
-    <img ng-src="logo.jpg" class="logo" ng-click="usersCtrl.goToBack()">
-    <hr>
-    <div class="header" ng-click="usersCtrl.goToBack()">
-        {{usersCtrl.title}} ({{usersFilter.length}} / {{usersCtrl.users.length}})
-    </div>
-    <div>
-        <input type="text" class="form-control input"
-               placeholder="Search here"
-               ng-model="usersCtrl.query.name">
-    </div>
-    <table class="table table-striped input">
-        <tr ng-repeat="item in filteredUsers
-				| orderBy:usersCtrl.sort:usersCtrl.rev |
-				filter:usersCtrl.query as usersFilter
-				track by $index">
-            <td ng-click="usersCtrl.usersEditForm(item)" class="input">
-                <div class="name-div">
-                    {{item.name}}
-                </div>
-            </td>
-        </tr>
-    </table>
-    <hr class="fix-hr">
-		<span class="label label-primary per-page">Items per page:
-			<input class="per-page-input" type="text" ng-model="numPerPage" value={{numPerPage}}>
-		</span>
+<ion-view view-title="Users ({{usersCtrl.usersFilter.length}} / {{usersCtrl.users.length}})"
+          ng-click="usersCtrl.queryClear()">
 
-    <div>
-        <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm"
-                    boundary-links="true"></pagination>
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-navicon"
+                ng-click="usersCtrl.showAdd()">
+        </button>
+    </ion-nav-buttons>
+
+    <div class="bar bar-subheader item-input-inset bar-light">
+        <label class="item-input-wrapper">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search"
+                   ng-model="usersCtrl.query.name"
+                   ng-change="usersCtrl.queryChanged()"
+                   placeholder="Search">
+            <i class="ion-close-round" ng-show="usersCtrl.clear"></i>
+        </label>
     </div>
-    <button class="btn btn-primary button" ng-click="usersCtrl.usersAdd()">Add</button>&nbsp
-    <button class="btn btn-primary button" ng-click="usersCtrl.usersBack()" scroll-here>Back</button>
-    <div class="blanker"></div>
-</center>
+
+    <ion-content class="has-subheader">
+        <ion-refresher on-refresh="usersCtrl.doRefresh()"></ion-refresher>
+
+        <ion-list>
+            <ion-item
+                    collection-repeat="user in (usersCtrl.clientsFilter = (usersCtrl.users | filter:usersCtrl.query))"
+                    type="item-text-wrap" ng-click="usersCtrl.userDetails(user)">
+                <h2><strong>{{user.name}}</strong></h2>
+
+                <ion-option-button class="button-assertive" ng-click="usersCtrl.showConfirm(user)">
+                    Delete
+                </ion-option-button>
+
+			</ion-item>
+        </ion-list>
+    </ion-content>
+
+    <div ng-if="usersCtrl.addShowed" class="badge-div" ng-click="usersCtrl.userAdd()">
+        <span class="badge-icon ion-plus"></span>
+    </div>
+
+</ion-view>
