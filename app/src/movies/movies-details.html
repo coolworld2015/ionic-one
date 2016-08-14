@@ -1,7 +1,7 @@
 <ion-view view-title="{{moviesDetailsCtrl.name}}">
     <ion-nav-buttons side="secondary">
         <button class="button button-icon ion-navicon"
-                ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+                ng-click="moviesDetailsCtrl.showSubmit()">
         </button>
     </ion-nav-buttons>
 
@@ -70,6 +70,9 @@
                        ng-model="moviesDetailsCtrl.imdbID">
             </label>
         </div>
-
     </ion-content>
+		
+    <div ng-if="moviesDetailsCtrl.submitShowed" class="badge-div" ng-click="moviesDetailsCtrl.movieSubmit()">
+        <div class="badge-icon ion-checkmark"></div>
+    </div>
 </ion-view>

@@ -29,11 +29,11 @@
             });
 
             vm.movies = [];
-            vm.moviesFilter = [];
             vm.clear = false;
             vm.searchShowed = false;
 
             vm.movies = MoviesLocalStorage.getItems();
+			vm.moviesFilter = vm.movies;
 			$ionicLoading.hide();
         }
 
@@ -82,8 +82,7 @@
         }
 
         function errorHandler() {
-            $rootScope.loading = false;
-            $rootScope.myError = true;
+            $rootScope.raisedError = true;
             $ionicLoading.hide();
         }
 

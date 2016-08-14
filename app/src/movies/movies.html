@@ -21,7 +21,8 @@
         <ion-refresher on-refresh="moviesCtrl.doRefresh()"></ion-refresher>
 
         <ion-list>
-            <div collection-repeat="item in (moviesCtrl.moviesFilter = (moviesCtrl.movies | filter: moviesCtrl.query))"
+			<ion-item
+             collection-repeat="item in (moviesCtrl.moviesFilter = (moviesCtrl.movies | filter: moviesCtrl.query))"
                     type="item-text-wrap" ng-click="moviesCtrl.itemDetails(item)">
 
                 <a class="item item-thumbnail-left">
@@ -30,8 +31,12 @@
                     <p>{{item.country}} - {{item.year}}</p>
                     <p>{{item.genre}}</p>
                 </a>
-
-			</div>
+				
+                <ion-option-button class="button-assertive" ng-click="moviesCtrl.showConfirm(client)">
+                    Delete
+                </ion-option-button>
+			
+				</ion-item>
 		</ion-list>
     </ion-content>
 
