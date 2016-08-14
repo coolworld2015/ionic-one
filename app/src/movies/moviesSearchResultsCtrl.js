@@ -3,26 +3,30 @@
 
     angular
         .module('app')
-        .controller('CollectionSearchResultsCtrl', CollectionSearchResultsCtrl);
+        .controller('MoviesSearchResultsCtrl', MoviesSearchResultsCtrl);
 
-    CollectionSearchResultsCtrl.$inject = ['$scope', '$rootScope', '$state', 'items',
+    MoviesSearchResultsCtrl.$inject = ['$scope', '$rootScope', '$state', 'items',
         '$ionicLoading', '$ionicPopup', '$ionicListDelegate'];
 
-    function CollectionSearchResultsCtrl($scope, $rootScope, $state, items, $ionicLoading, $ionicPopup, $ionicListDelegate) {
+    function MoviesSearchResultsCtrl($scope, $rootScope, $state, items, 
+		$ionicLoading, $ionicPopup, $ionicListDelegate) {
         var vm = this;
 
         angular.extend(vm, {
             init: init,
             queryChanged: queryChanged,
             queryClear: queryClear,
-            collectionDetails: collectionDetails
+            moviesDetails: moviesDetails,
+            moviesSearch: moviesSearch
         });
 
         init();
 
         function init() {
-            vm.items = items;
-            vm.itemsFilter = items;
+			var arr = [];
+			arr.push(items);
+            vm.movies = arr;
+            vm.moviesFilter = items;
             vm.clear = false;
         }
 
@@ -37,8 +41,13 @@
             vm.clear = false;
         }
 
-        function collectionDetails(item) {
-            $state.go('root.collection-details', {item: item});
+        function moviesDetails(item) {
+            $state.go('root.movies-details', {item: item});
+        }
+
+
+        function moviesSearch() {
+            $state.go('root.movies-search');
         }
     }
 })();

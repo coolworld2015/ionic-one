@@ -1,4 +1,4 @@
-<ion-view view-title="Search in collection">
+<ion-view view-title="Search movies in IMDB">
     <ion-nav-buttons side="secondary">
         <button class="button button-icon ion-navicon"
                 ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
@@ -7,11 +7,11 @@
 
     <ion-content class="padding">
         <button class="button button-block button-positive" style="background-color: #417D9A !important;">
-            <strong>Search by {{collectionSearchCtrl.search}}</strong>
+            <strong>Search by {{moviesSearchCtrl.search}}</strong>
         </button>
 
-        <ion-toggle  ng-model="collectionSearchCtrl.finds" ng-change1="collectionSearchCtrl.toggleChanged()">
-            Search by {{collectionSearchCtrl.search}}
+        <ion-toggle  ng-model="moviesSearchCtrl.finds" ng-change="moviesSearchCtrl.toggleChanged()">
+            Search by {{moviesSearchCtrl.search}}
         </ion-toggle>
         <!--
                 <li class="item item-toggle">
@@ -24,16 +24,16 @@
                     </label>
                 </li>
         -->
-        <form ng-submit="collectionSearchCtrl.doSearch()" novalidate name="collectionSearchCtrl.form" autocomplete="off">
+        <form ng-submit="moviesSearchCtrl.doSearch()" novalidate name="moviesSearchCtrl.form" autocomplete="off">
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Search {{collectionSearchCtrl.search}}" ng-model="collectionSearchCtrl.name" name="name" ng-change="collectionSearchCtrl.change()" required>
+                    <input type="text" placeholder="Search {{moviesSearchCtrl.search}}" ng-model="moviesSearchCtrl.name" name="name" ng-change="moviesSearchCtrl.change()" required>
                 </label>
 
-                <div ng-if="collectionSearchCtrl.form.$submitted">
-                    <div ng-show="collectionSearchCtrl.form.name.$error.required" class="valid">Value required</div>
+                <div ng-if="moviesSearchCtrl.form.$submitted">
+                    <div ng-show="moviesSearchCtrl.form.name.$error.required" class="valid">Value required</div>
                 </div>
-                <div ng-show="collectionSearchCtrl.minLengthError" class="valid">Min 3 symbols</div>
+                <div ng-show="moviesSearchCtrl.minLengthError" class="valid">Min 3 symbols</div>
             </div>
 
             <button type="submit" class="button button-block button-positive" style="background-color: #417D9A !important;">

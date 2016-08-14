@@ -1,4 +1,4 @@
-<ion-view view-title="Movies ({{moviesCtrl.itemsFilter.length}} / {{moviesCtrl.items.length}})"
+<ion-view view-title="Movies ({{moviesCtrl.moviesFilter.length}} / {{moviesCtrl.movies.length}})"
           ng-click="moviesCtrl.queryClear()">
 
     <ion-nav-buttons side="secondary">
@@ -21,7 +21,7 @@
         <ion-refresher on-refresh="moviesCtrl.doRefresh()"></ion-refresher>
 
         <ion-list>
-            <div collection-repeat="item in (moviesCtrl.itemsFilter = (moviesCtrl.items | filter: moviesCtrl.query))"
+            <div collection-repeat="item in (moviesCtrl.moviesFilter = (moviesCtrl.movies | filter: moviesCtrl.query))"
                     type="item-text-wrap" ng-click="moviesCtrl.itemDetails(item)">
 
                 <a class="item item-thumbnail-left">

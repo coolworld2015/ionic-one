@@ -28,12 +28,12 @@
                 template: '<ion-spinner></ion-spinner>'
             });
 
-            vm.items = [];
-            vm.itemsFilter = [];
+            vm.movies = [];
+            vm.moviesFilter = [];
             vm.clear = false;
             vm.searchShowed = false;
 
-            vm.items = MoviesLocalStorage.getItems();
+            vm.movies = MoviesLocalStorage.getItems();
 			$ionicLoading.hide();
         }
 
@@ -54,10 +54,10 @@
         }
 
         function doRefresh() {
-            vm.items = [];
+            vm.movies = [];
             vm.clear = false;
 			
-			vm.items = MoviesLocalStorage.getItems();
+			vm.movies = MoviesLocalStorage.getItems();
 			$scope.$broadcast('scroll.refreshComplete');
         }
 
@@ -78,7 +78,7 @@
 
 
         function itemsSearch() {
-            $state.go('root.collection-search');
+            $state.go('root.movies-search');
         }
 
         function errorHandler() {

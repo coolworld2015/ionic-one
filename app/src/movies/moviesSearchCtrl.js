@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('CollectionSearchCtrl', CollectionSearchCtrl);
+        .controller('MoviesSearchCtrl', MoviesSearchCtrl);
 
-    CollectionSearchCtrl.$inject = ['$state', '$ionicLoading'];
+    MoviesSearchCtrl.$inject = ['$state', '$ionicLoading'];
 
-    function CollectionSearchCtrl($state, $ionicLoading) {
+    function MoviesSearchCtrl($state, $ionicLoading) {
         var vm = this;
 
         angular.extend(vm, {
@@ -21,7 +21,7 @@
 
         function init() {
             vm.finds = true;
-            vm.search = 'name';
+            vm.search = 'title';
         }
 
         function change() {
@@ -31,10 +31,10 @@
 
         function toggleChanged() {
             if (vm.finds) {
-                vm.search = 'phone';
+                vm.search = 'title';
             } else {
-                vm.search = 'name';
-            }
+				vm.search = 'IMDB-ID';
+              }
         }
 
         function doSearch() {
@@ -50,7 +50,7 @@
             $ionicLoading.show({
                 template: '<ion-spinner></ion-spinner>'
             });
-            $state.go('root.collection-search-results', {name: vm.name, search: vm.search, finds: true});
+            $state.go('root.movies-search-results', {name: vm.name, search: vm.search, finds: true});
         }
     }
 })();
