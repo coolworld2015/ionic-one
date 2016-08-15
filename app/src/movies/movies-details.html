@@ -10,7 +10,7 @@
         <h2 align="center">{{moviesDetailsCtrl.name}}</h2>
 
         <div class="list">
-			<label class="item  ">
+			<label class="item">
 				<img ng-src="{{moviesDetailsCtrl.pic}}" style="width:100%">
 			</label>
 
@@ -34,7 +34,7 @@
 			
 			<label class="item item-input">
                 <span class="input-label"><b>Actors:</b></span>
-                <textarea rows="3"
+                <textarea rows="3" style="width: 62%"
                           ng-model="moviesDetailsCtrl.actors">
                 </textarea>					   
             </label>
@@ -59,7 +59,7 @@
 						
             <label class="item item-input">
                 <span class="input-label"><b>Plot:</b></span>
-                <textarea rows="15"
+                <textarea rows="15" style="width: 62%"
                           ng-model="moviesDetailsCtrl.plot">
                 </textarea>						   
             </label>
@@ -70,6 +70,8 @@
                        ng-model="moviesDetailsCtrl.imdbID">
             </label>
         </div>
+        <br>
+
     </ion-content>
 		
     <div ng-if="moviesDetailsCtrl.submitShowed" class="badge-div" ng-click="moviesDetailsCtrl.movieSubmit()">
