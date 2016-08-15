@@ -5,15 +5,17 @@
         .module('app')
         .controller('MoviesCtrl', MoviesCtrl);
 
-    MoviesCtrl.$inject = ['$scope', '$rootScope', '$state', 'MoviesLocalStorage', '$ionicLoading'];
+    MoviesCtrl.$inject = ['$scope', '$rootScope', '$state', 'MoviesLocalStorage',
+        '$ionicLoading', '$ionicPopup', '$ionicListDelegate'];
 
-    function MoviesCtrl($scope, $rootScope, $state, MoviesLocalStorage, $ionicLoading) {
+    function MoviesCtrl($scope, $rootScope, $state, MoviesLocalStorage, $ionicLoading, $ionicPopup, $ionicListDelegate) {
         var vm = this;
 
         angular.extend(vm, {
             init: init,
             showSearch: showSearch,
-            phoneDelete: phoneDelete,
+            showConfirm: showConfirm,
+            movieDelete: movieDelete,
             doRefresh: doRefresh,
             queryClear: queryClear,
             queryChanged: queryChanged,
@@ -33,32 +35,51 @@
             vm.searchShowed = false;
 
             vm.movies = MoviesLocalStorage.getItems();
-			vm.moviesFilter = vm.movies;
-			$ionicLoading.hide();
+            vm.moviesFilter = vm.movies;
+            $ionicLoading.hide();
+
+            if (vm.movies.length == 0) {
+                $state.go('root.movies-search');
+            }
         }
 
         function showSearch() {
             vm.searchShowed = vm.searchShowed ? false : true;
         }
 
-        function phoneDelete(id) {
+        function showConfirm(movie) {
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Delete client',
+                template: 'Are you sure you want to delete ' + movie.name + '?'
+            });
+
+            confirmPopup.then(function (res) {
+                if (res) {
+                    movieDelete(movie.id);
+                } else {
+                    $ionicListDelegate.closeOptionButtons();
+                    console.log('You are not sure');
+                }
+            });
+        }
+
+        function movieDelete(id) {
             $ionicLoading.show({
                 template: '<ion-spinner></ion-spinner>'
             });
-            CollectionService.deleteItem(id)
-                .then(function () {
-                    init();
-                })
-                .catch(errorHandler);
+
+            MoviesLocalStorage.deleteItem(id);
             $ionicLoading.hide();
+            $ionicListDelegate.closeOptionButtons();
         }
 
         function doRefresh() {
             vm.movies = [];
             vm.clear = false;
-			
-			vm.movies = MoviesLocalStorage.getItems();
-			$scope.$broadcast('scroll.refreshComplete');
+
+            vm.movies = MoviesLocalStorage.getItems();
+            vm.moviesFilter = vm.movies;
+            $scope.$broadcast('scroll.refreshComplete');
         }
 
         function queryChanged() {

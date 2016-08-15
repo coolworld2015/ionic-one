@@ -79,7 +79,7 @@
                     'root-movies': {
 						templateUrl: 'movies/movies-search-results.html',
 						controller: 'MoviesSearchResultsCtrl',
-						controllerAs: 'moviesResultsCtrl',
+						controllerAs: 'moviesResultsCtrl'
 					}
 				},
                 resolve: {
@@ -99,7 +99,7 @@
 									$ionicLoading.hide();
                                     return data.data;
                                 })
-                                .catch(function (reject) {
+                                .catch(function () {
 									$rootScope.raisedError = true;
 									$ionicLoading.hide();
                                     return [];
