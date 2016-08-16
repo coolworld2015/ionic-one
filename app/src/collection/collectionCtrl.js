@@ -32,12 +32,14 @@
             vm.itemsFilter = [];
             vm.clear = false;
             vm.searchShowed = false;
+            $rootScope.raisedError = false;
 
             CollectionService.getItems()
                 .then(function (result) {
                     vm.items = result.data;
                     $ionicLoading.hide();
-                });
+                })
+                .catch(errorHandler);
         }
 
         function showSearch() {
@@ -63,7 +65,8 @@
                 .then(function (result) {
                     vm.items = result.data;
                     $scope.$broadcast('scroll.refreshComplete');
-                });
+                })
+                .catch(errorHandler);
         }
 
         function queryChanged() {
@@ -87,8 +90,7 @@
         }
 
         function errorHandler() {
-            $rootScope.loading = false;
-            $rootScope.myError = true;
+            $rootScope.raisedError = true;
             $ionicLoading.hide();
         }
 

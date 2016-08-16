@@ -33,6 +33,7 @@
             vm.movies = [];
             vm.clear = false;
             vm.searchShowed = false;
+            $rootScope.raisedError = false;
 
             vm.movies = MoviesLocalStorage.getItems();
             vm.moviesFilter = vm.movies;

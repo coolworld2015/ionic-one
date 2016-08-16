@@ -35,12 +35,14 @@
             vm.clientsFilter = [];
             vm.clear = false;
             vm.addShowed = false;
+            $rootScope.raisedError = false;
 
             ClientsService.getClients()
                 .then(function (result) {
                     vm.clients = result.data;
                     $ionicLoading.hide();
-                });
+                })
+                .catch(errorHandler);
         }
 
         function showAdd() {
@@ -98,7 +100,8 @@
                 .then(function (result) {
                     vm.clients = result.data;
                     $scope.$broadcast('scroll.refreshComplete');
-                });
+                })
+                .catch(errorHandler);
         }
 
         function queryChanged() {
